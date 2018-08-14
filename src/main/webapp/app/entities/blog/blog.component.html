@@ -1,7 +1,14 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="jhipsterPress07App.blog.home.title">Blogs</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-blog" [routerLink]="['/blog/new']">
+        <button style="margin:5px;" id="jh-my-entity" class="btn btn-primary float-right jh-create-entity create-blog" (click)="myBlogs()">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterPress07App.blog.home.myLabel">
+            My Blog
+            </span>
+        </button>
+        
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-blog" [routerLink]="['/myblogs']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="jhipsterPress07App.blog.home.createLabel">
             Create new Blog
@@ -46,13 +53,15 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                        		type="submit"
                                 [routerLink]="['/blog', blog.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                        		type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'blog/'+ blog.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
