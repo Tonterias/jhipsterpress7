@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  * support is still in beta, and requires a manual step with an IDE.
  */
 @Service
+//@Mapper(componentModel = "spring", uses = {ProfileMapper.class, CommunityMapper.class})
 public class UserMapper {
 
     public UserDTO userToUserDTO(User user) {
