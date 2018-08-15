@@ -10,8 +10,8 @@ import { IPost } from 'app/shared/model/post.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
-import { PostService } from './post.service';
 import { ProfileService } from '../profile/profile.service';
+import { PostService } from './post.service';
 
 @Component({
     selector: 'jhi-post',

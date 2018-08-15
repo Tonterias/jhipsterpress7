@@ -5,6 +5,7 @@
             "home": {
                 "title": "Comments",
                 "createLabel": "Crear nuevo Comment",
+                "myLabel": "My Comments",
                 "createOrEditLabel": "Crear o editar Comment"
             },
             "created": "Un nuevo Comment ha sido creado con el identificador {{ param }}",

@@ -5,6 +5,7 @@
             "home": {
                 "title": "Photos",
                 "createLabel": "Crear nuevo Photo",
+                "myLabel": "My Photos",
                 "createOrEditLabel": "Crear o editar Photo"
             },
             "created": "Un nuevo Photo ha sido creado con el identificador {{ param }}",
