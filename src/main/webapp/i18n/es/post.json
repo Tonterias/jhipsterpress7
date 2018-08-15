@@ -5,6 +5,7 @@
             "home": {
                 "title": "Posts",
                 "createLabel": "Crear nuevo Post",
+                "myLabel": "Mis Posts",
                 "createOrEditLabel": "Crear o editar Post"
             },
             "created": "Un nuevo Post ha sido creado con el identificador {{ param }}",

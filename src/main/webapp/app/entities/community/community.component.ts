@@ -128,6 +128,23 @@ export class CommunityComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myCommunities() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.communityService
+            .query(query)
+            .subscribe(
+                (res: HttpResponse<ICommunity[]>) => this.paginateCommunities(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginateCommunities(data: ICommunity[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);

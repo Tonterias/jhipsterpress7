@@ -184,7 +184,6 @@ export class BlogComponent implements OnInit, OnDestroy {
         this.queryCount = this.totalItems;
         this.communities = data;
         this.communitiesBlogs();
-        console.log('Comunidades', this.communities);
     }
 
     private onError(errorMessage: string) {

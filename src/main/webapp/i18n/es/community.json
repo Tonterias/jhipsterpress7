@@ -5,6 +5,7 @@
             "home": {
                 "title": "Communities",
                 "createLabel": "Crear nuevo Community",
+                "myLabel": "Mis Comunidades",
                 "createOrEditLabel": "Crear o editar Community"
             },
             "created": "Un nuevo Community ha sido creado con el identificador {{ param }}",

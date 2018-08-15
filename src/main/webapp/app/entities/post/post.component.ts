@@ -4,11 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
+import { IProfile } from 'app/shared/model/profile.model';
+
 import { IPost } from 'app/shared/model/post.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { PostService } from './post.service';
+import { ProfileService } from '../profile/profile.service';
 
 @Component({
     selector: 'jhi-post',
@@ -17,6 +20,7 @@ import { PostService } from './post.service';
 export class PostComponent implements OnInit, OnDestroy {
     currentAccount: any;
     posts: IPost[];
+    profiles: IProfile[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -32,6 +36,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
     constructor(
         private postService: PostService,
+        private profileService: ProfileService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -128,11 +133,57 @@ export class PostComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myPosts() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.profileService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private profilesPosts() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.profiles  != null) {
+            const arrayProfiles = [];
+            this.profiles.forEach(profile => {
+                arrayProfiles.push(profile.id);
+            });
+            query['profileId.in'] = arrayProfiles;
+        }
+        this.postService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IPost[]>) => this.paginatePosts(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginatePosts(data: IPost[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.posts = data;
+    }
+
+    private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        this.queryCount = this.totalItems;
+        this.profiles = data;
+        this.profilesPosts();
     }
 
     private onError(errorMessage: string) {
