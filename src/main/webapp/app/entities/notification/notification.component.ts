@@ -127,6 +127,23 @@ export class NotificationComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myNotifications() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.notificationService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<INotification[]>) => this.paginateNotifications(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginateNotifications(data: INotification[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);

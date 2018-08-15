@@ -5,6 +5,7 @@
             "home": {
                 "title": "Notifications",
                 "createLabel": "Crear nuevo Notification",
+                "myLabel": "My Notifications",
                 "createOrEditLabel": "Crear o editar Notification"
             },
             "created": "Un nuevo Notification ha sido creado con el identificador {{ param }}",

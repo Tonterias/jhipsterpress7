@@ -94,12 +94,18 @@
                 <span><i class="icon-heart g-pos-rel g-top-1 g-mr-8"></i> Reviews</span>
               </a>
               <!-- End Reviews -->
-
-              <!-- Block Users -->
-              <a href="page-profile-history-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-fire g-pos-rel g-top-1 g-mr-8"></i> Block Users</span>
+              
+              <!-- Blocking Users -->
+              <a [routerLink]="['/blockuser']" [queryParams]="{ 'blockingUserIdEquals': profile.id }" class="list-group-item list-group-item-action justify-content-between">
+                <span><i class="icon-fire g-pos-rel g-top-1 g-mr-8"></i> Blocking Users</span>
               </a>
-              <!-- End Block Users -->
+              <!-- End Blocking Users -->
+
+              <!-- Blocked Users -->
+              <a [routerLink]="['/blockuser']" [queryParams]="{ 'blockedUserIdEquals': profile.id }" class="list-group-item list-group-item-action justify-content-between">
+                <span><i class="icon-fire g-pos-rel g-top-1 g-mr-8"></i> Blocked Users</span>
+              </a>
+              <!-- End Blocked Users -->
 
               <!-- Settings -->
               <a href="page-profile-settings-1.html" class="list-group-item justify-content-between active">
