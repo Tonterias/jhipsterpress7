@@ -4,10 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
+import { ICommunity } from 'app/shared/model/community.model';
+import { IProfile } from 'app/shared/model/profile.model';
+
 import { IMessage } from 'app/shared/model/message.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
+import { CommunityService } from '../community/community.service';
+import { ProfileService } from '../profile/profile.service';
 import { MessageService } from './message.service';
 
 @Component({
@@ -17,6 +22,8 @@ import { MessageService } from './message.service';
 export class MessageComponent implements OnInit, OnDestroy {
     currentAccount: any;
     messages: IMessage[];
+    communities: ICommunity[];
+    profiles: IProfile[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -33,6 +40,8 @@ export class MessageComponent implements OnInit, OnDestroy {
 
     constructor(
         private messageService: MessageService,
+        private communityService: CommunityService,
+        private profileService: ProfileService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -125,6 +134,99 @@ export class MessageComponent implements OnInit, OnDestroy {
             result.push('id');
         }
         return result;
+    }
+
+    private myMessagesCommunities() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.communityService
+            .query(query)
+            .subscribe(
+                (res: HttpResponse<ICommunity[]>) => this.paginateCommunities(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.myMessagesProfiles();
+    }
+
+    private myMessagesProfiles() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.profileService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private communitiesMessages() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.communities  != null) {
+            const arrayCommmunities = [];
+            this.communities.forEach(community => {
+                arrayCommmunities.push(community.id);
+            });
+            query['communityId.in'] = arrayCommmunities;
+        }
+        this.messageService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IMessage[]>) => this.paginateMessages(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private profilesMessages() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.profiles  != null) {
+            const arrayProfiles = [];
+            this.profiles.forEach(profile => {
+                arrayProfiles.push(profile.id);
+            });
+            query['profileId.in'] = arrayProfiles;
+        }
+        this.messageService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IMessage[]>) => this.paginateMessages(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private paginateCommunities(data: ICommunity[], headers: HttpHeaders) {
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        this.queryCount = this.totalItems;
+        this.communities = data;
+        this.communitiesMessages();
+    }
+
+    private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        this.queryCount = this.totalItems;
+        this.profiles = data;
+        this.profilesMessages();
     }
 
     private paginateMessages(data: IMessage[], headers: HttpHeaders) {

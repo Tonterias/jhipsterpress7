@@ -119,7 +119,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myAlbums() {
+    private myAlbums() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,

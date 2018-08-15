@@ -124,7 +124,7 @@ export class CalbumComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myCalbums() {
+    private myCalbums() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,

@@ -133,7 +133,7 @@ export class PostComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myPosts() {
+    private myPosts() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,

@@ -124,7 +124,7 @@ export class CommentComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myComments() {
+    private myComments() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,

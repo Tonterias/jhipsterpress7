@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myProfile() {
+    private myProfile() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,

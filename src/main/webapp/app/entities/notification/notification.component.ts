@@ -127,7 +127,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    myNotifications() {
+    private myNotifications() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
