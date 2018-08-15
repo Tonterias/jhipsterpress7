@@ -3,7 +3,7 @@
         <span jhiTranslate="jhipsterPress07App.community.home.title">Communities</span>
         <button style="margin:5px;" id="jh-my-entity" class="btn btn-primary float-right jh-create-entity create-blog" (click)="myCommunities()">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="jhipsterPress07App.blog.home.myLabel">
+            <span  jhiTranslate="jhipsterPress07App.community.home.myLabel">
             My Communities
             </span>
         </button>
@@ -55,13 +55,15 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+            					type="submit"
                                 [routerLink]="['/community', community.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+            					type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'community/'+ community.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

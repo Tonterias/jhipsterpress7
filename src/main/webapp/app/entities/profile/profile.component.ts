@@ -128,6 +128,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myProfile() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.profileService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
