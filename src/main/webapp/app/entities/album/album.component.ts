@@ -119,6 +119,23 @@ export class AlbumComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myAlbums() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.albumService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IAlbum[]>) => this.paginateAlbums(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginateAlbums(data: IAlbum[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);

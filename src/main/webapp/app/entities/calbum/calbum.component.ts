@@ -4,10 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
+import { ICommunity } from 'app/shared/model/community.model';
+
 import { ICalbum } from 'app/shared/model/calbum.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
+import { CommunityService } from '../community/community.service';
 import { CalbumService } from './calbum.service';
 
 @Component({
@@ -17,6 +20,7 @@ import { CalbumService } from './calbum.service';
 export class CalbumComponent implements OnInit, OnDestroy {
     currentAccount: any;
     calbums: ICalbum[];
+    communities: ICommunity[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -32,6 +36,7 @@ export class CalbumComponent implements OnInit, OnDestroy {
 
     constructor(
         private calbumService: CalbumService,
+        private communityService: CommunityService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -119,11 +124,57 @@ export class CalbumComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    myCalbums() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.communityService
+            .query(query)
+            .subscribe(
+                (res: HttpResponse<ICommunity[]>) => this.paginateCommunities(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private communitiesBlogs() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.communities  != null) {
+            const arrayCommmunities = [];
+            this.communities.forEach(community => {
+                arrayCommmunities.push(community.id);
+            });
+            query['communityId.in'] = arrayCommmunities;
+        }
+        this.calbumService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<ICalbum[]>) => this.paginateCalbums(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     private paginateCalbums(data: ICalbum[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.calbums = data;
+    }
+
+    private paginateCommunities(data: ICommunity[], headers: HttpHeaders) {
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        this.queryCount = this.totalItems;
+        this.communities = data;
+        this.communitiesBlogs();
     }
 
     private onError(errorMessage: string) {

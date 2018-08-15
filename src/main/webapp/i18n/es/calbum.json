@@ -5,6 +5,7 @@
             "home": {
                 "title": "Calbums",
                 "createLabel": "Crear nuevo Calbum",
+                "myLabel": "My Calbum",
                 "createOrEditLabel": "Crear o editar Calbum"
             },
             "created": "Un nuevo Calbum ha sido creado con el identificador {{ param }}",
