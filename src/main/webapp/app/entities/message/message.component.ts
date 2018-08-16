@@ -148,7 +148,10 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.communityService
             .query(query)
             .subscribe(
-                (res: HttpResponse<ICommunity[]>) => this.paginateCommunities(res.body, res.headers),
+                (res: HttpResponse<ICommunity[]>) => {
+                    this.communities = res.body;
+                    this.communitiesMessages();
+                    },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
         this.myMessagesProfiles();
@@ -166,7 +169,10 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.profileService
             .query(query)
             .subscribe(
-                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
+                    (res: HttpResponse<IProfile[]>) => {
+                        this.profiles = res.body;
+                        this.profilesMessages();
+                    },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -187,7 +193,10 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.messageService
             .query(query)
             .subscribe(
-                    (res: HttpResponse<IMessage[]>) => this.paginateMessages(res.body, res.headers),
+                    (res: HttpResponse<IMessage[]>) => {
+                        this.messages = res.body;
+                        this.myMessagesProfiles();
+                     },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -208,30 +217,17 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.messageService
             .query(query)
             .subscribe(
-                    (res: HttpResponse<IMessage[]>) => this.paginateMessages(res.body, res.headers),
+                    (res: HttpResponse<IMessage[]>) => {
+                        this.messages = this.messages.concat(res.body);
+                        this.paginateMessages(this.messages, res.headers);
+                    },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
 
-    private paginateCommunities(data: ICommunity[], headers: HttpHeaders) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        this.queryCount = this.totalItems;
-        this.communities = data;
-        this.communitiesMessages();
-    }
-
-    private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        this.queryCount = this.totalItems;
-        this.profiles = data;
-        this.profilesMessages();
-    }
-
     private paginateMessages(data: IMessage[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        this.totalItems = data.length;
         this.queryCount = this.totalItems;
         this.messages = data;
     }

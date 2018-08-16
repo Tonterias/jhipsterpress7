@@ -35,7 +35,7 @@ export const followRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -48,7 +48,7 @@ export const followRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -60,7 +60,7 @@ export const followRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -72,7 +72,7 @@ export const followRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -84,7 +84,7 @@ export const followRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -99,7 +99,7 @@ export const followPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'jhipsterPress06App.follow.home.title'
+            pageTitle: 'jhipsterPress07App.follow.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

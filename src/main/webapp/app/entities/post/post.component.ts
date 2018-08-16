@@ -33,6 +33,8 @@ export class PostComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    owner: any;
+    isAdmin: boolean;
 
     constructor(
         private postService: PostService,
@@ -101,6 +103,10 @@ export class PostComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
+            this.owner = account.id;
+            this.principal.hasAnyAuthority(['ROLE_ADMIN']).then( result => {
+                this.isAdmin = result;
+            });
         });
         this.registerChangeInPosts();
     }
@@ -134,35 +140,16 @@ export class PostComponent implements OnInit, OnDestroy {
     }
 
     private myPosts() {
-        const query = {
-                page: this.page - 1,
-                size: this.itemsPerPage,
-                sort: this.sort()
-            };
-        if ( this.currentAccount.id  != null) {
-            query['userId.equals'] = this.currentAccount.id;
-        }
-        this.profileService
-            .query(query)
-            .subscribe(
-                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
-                    (res: HttpErrorResponse) => this.onError(res.message)
-            );
+        this.profilesPosts(this.owner);
     }
 
-    private profilesPosts() {
+    private profilesPosts(owner) {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()
             };
-        if ( this.profiles  != null) {
-            const arrayProfiles = [];
-            this.profiles.forEach(profile => {
-                arrayProfiles.push(profile.id);
-            });
-            query['profileId.in'] = arrayProfiles;
-        }
+        query['profileId.in'] = [owner];
         this.postService
             .query(query)
             .subscribe(
@@ -176,6 +163,7 @@ export class PostComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.posts = data;
+        console.log('POST', this.posts);
     }
 
     private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
