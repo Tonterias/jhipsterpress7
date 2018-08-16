@@ -132,13 +132,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="urllink" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="urllink" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.urllink">Urllink</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="frontpageconfig" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="frontpageconfig" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.frontpageconfig">Frontpageconfig</span>
                         </a>
