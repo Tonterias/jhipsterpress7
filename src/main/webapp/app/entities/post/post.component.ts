@@ -171,7 +171,7 @@ export class PostComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.profiles = data;
-        this.profilesPosts();
+//        this.profilesPosts();
     }
 
     private onError(errorMessage: string) {

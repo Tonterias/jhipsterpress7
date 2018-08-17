@@ -11,12 +11,14 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {CommunityMapper.class, ProfileMapper.class})
 public interface MessageMapper extends EntityMapper<MessageDTO, Message> {
 
-    @Mapping(source = "community.id", target = "communityId")
-    @Mapping(source = "profile.id", target = "profileId")
+//    @Mapping(source = "community.id", target = "communityId")
+//    @Mapping(source = "profile.id", target = "profileId")
     MessageDTO toDto(Message message);
 
-    @Mapping(source = "communityId", target = "community")
-    @Mapping(source = "profileId", target = "profile")
+//    @Mapping(source = "communityId", target = "community")
+//    @Mapping(source = "profileId", target = "profile")
+    @Mapping(target = "profile", ignore = true)
+    @Mapping(target = "community", ignore = true)
     Message toEntity(MessageDTO messageDTO);
 
     default Message fromId(Long id) {

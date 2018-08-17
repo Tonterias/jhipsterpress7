@@ -40,7 +40,7 @@ import web.jhp7.web.domain.enumeration.FutureChildren;
  */
 @Entity
 @Table(name = "profile")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONE)
 public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;

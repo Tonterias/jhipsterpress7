@@ -9,7 +9,7 @@ import org.mapstruct.*;
  * Mapper for the entity Post and its DTO PostDTO.
  */
 @Mapper(componentModel = "spring", uses = {UrllinkMapper.class, BlogMapper.class, 
-		ProfileMapper.class, CustomTagMapper.class, CommentMapper.class, UrllinkMapper.class})
+		ProfileMapper.class, CustomTagMapper.class, CommentMapper.class, UrllinkMapper.class, UserMapper.class})
 public interface PostMapper extends EntityMapper<PostDTO, Post> {
 
 

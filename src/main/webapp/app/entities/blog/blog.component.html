@@ -45,7 +45,7 @@
 	            <li class="col g-brd-right g-brd-gray-light-v4">
 	            <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-font-size-12 g-text-underline--none--hover g-px-5 g-py-4" href="#!">
 	                <i class="align-middle mr-1 icon-finance-206 u-line-icon-pro"></i>
-	     	               <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+	     	               <button *ngIf="owner === blog.community.user.id || isAdmin == true"
 	                      		type="submit"
 	                              [routerLink]="['/blog', blog.id, 'edit']"
 	                              class="btn btn-primary btn-sm">
@@ -55,18 +55,18 @@
 	            </a>
 	            </li>
 	            <li class="col g-brd-right g-brd-gray-light-v4">
-	            <span class="d-inline-block g-color-secondary-dark-v1 g-font-size-12 g-px-5 g-py-4">
+	            <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-font-size-12 g-text-underline--none--hover g-px-5 g-py-4" href="#!">
 	                <i class="align-middle mr-1 icon-education-097 u-line-icon-pro"></i>
-	                <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
-	                 		type="submit"
-	                         [routerLink]="['/', { outlets: { popup: 'blog/'+ blog.id + '/delete'} }]"
-	                         replaceUrl="true"
-	                         queryParamsHandling="merge"
-	                         class="btn btn-danger btn-sm">
-	                     <fa-icon [icon]="'times'"></fa-icon>
-	                     <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-	                 </button>
-	            </span>
+			                <button *ngIf="owner === blog.community.user.id || isAdmin == true"
+			                 		type="submit"
+			                         [routerLink]="['/', { outlets: { popup: 'blog/'+ blog.id + '/delete'} }]"
+			                         replaceUrl="true"
+			                         queryParamsHandling="merge"
+			                         class="btn btn-danger btn-sm">
+			                     <fa-icon [icon]="'times'"></fa-icon>
+			                     <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+			                 </button>
+	            </a>
 	            </li>
 	        </ul>
 	        <!-- End Info -->

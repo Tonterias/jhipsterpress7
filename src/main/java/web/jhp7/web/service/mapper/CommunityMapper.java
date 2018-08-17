@@ -11,7 +11,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface CommunityMapper extends EntityMapper<CommunityDTO, Community> {
 
-    @Mapping(source = "user.id", target = "userId")
+//    @Mapping(source = "user.id", target = "userId")
     CommunityDTO toDto(Community community);
 
     @Mapping(target = "blogs", ignore = true)
@@ -20,7 +20,8 @@ public interface CommunityMapper extends EntityMapper<CommunityDTO, Community> {
     @Mapping(target = "cfollowings", ignore = true)
     @Mapping(target = "cblockedusers", ignore = true)
     @Mapping(target = "cblockingusers", ignore = true)
-    @Mapping(source = "userId", target = "user")
+//    @Mapping(source = "userId", target = "user")
+    @Mapping(target = "user", ignore = true)
     @Mapping(target = "calbums", ignore = true)
     @Mapping(target = "interests", ignore = true)
     @Mapping(target = "activities", ignore = true)
