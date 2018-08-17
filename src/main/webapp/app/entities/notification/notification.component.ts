@@ -30,6 +30,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
     paramNotificationUserId: any;
+    owner: any;
+    isAdmin: boolean;
 
     constructor(
         private notificationService: NotificationService,
@@ -103,6 +105,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
+            this.owner = account.id;
+            this.principal.hasAnyAuthority(['ROLE_ADMIN']).then( result => {
+                this.isAdmin = result;
+            });
         });
         this.registerChangeInNotifications();
     }

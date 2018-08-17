@@ -49,15 +49,15 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
-            					type="submit"
+			            <button *ngIf="owner === notification.user.id || isAdmin == true"
+			              		type="submit"
                                 [routerLink]="['/notification', notification.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
-            					type="submit"
+			            <button *ngIf="owner === notification.user.id || isAdmin == true"
+			              		type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'notification/'+ notification.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

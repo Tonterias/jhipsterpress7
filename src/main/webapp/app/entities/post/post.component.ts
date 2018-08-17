@@ -140,16 +140,35 @@ export class PostComponent implements OnInit, OnDestroy {
     }
 
     private myPosts() {
-        this.profilesPosts(this.owner);
-    }
-
-    private profilesPosts(owner) {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()
             };
-        query['profileId.in'] = [owner];
+        if ( this.currentAccount.id  != null) {
+            query['userId.equals'] = this.currentAccount.id;
+        }
+        this.profileService
+            .query(query)
+            .subscribe(
+                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    private profilesPosts() {
+        const query = {
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            };
+        if ( this.profiles  != null) {
+            const arrayProfiles = [];
+            this.profiles.forEach(profile => {
+                arrayProfiles.push(profile.id);
+            });
+            query['profileId.in'] = arrayProfiles;
+        }
         this.postService
             .query(query)
             .subscribe(
@@ -163,7 +182,9 @@ export class PostComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.posts = data;
-        console.log('POST', this.posts);
+        console.log('OWNER', this.owner);
+        console.log('isADMIN', this.isAdmin);
+        console.log('POSTS', this.posts);
     }
 
     private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
@@ -171,7 +192,7 @@ export class PostComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.profiles = data;
-//        this.profilesPosts();
+        this.profilesPosts();
     }
 
     private onError(errorMessage: string) {
