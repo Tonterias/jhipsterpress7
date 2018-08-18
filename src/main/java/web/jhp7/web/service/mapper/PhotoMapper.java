@@ -11,12 +11,14 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {AlbumMapper.class, CalbumMapper.class})
 public interface PhotoMapper extends EntityMapper<PhotoDTO, Photo> {
 
-    @Mapping(source = "album.id", target = "albumId")
-    @Mapping(source = "calbum.id", target = "calbumId")
+//    @Mapping(source = "album.id", target = "albumId")
+//    @Mapping(source = "calbum.id", target = "calbumId")
     PhotoDTO toDto(Photo photo);
 
-    @Mapping(source = "albumId", target = "album")
-    @Mapping(source = "calbumId", target = "calbum")
+//    @Mapping(source = "albumId", target = "album")
+//    @Mapping(source = "calbumId", target = "calbum")
+    @Mapping(target = "album", ignore = true)
+    @Mapping(target = "calbum", ignore = true)
     Photo toEntity(PhotoDTO photoDTO);
 
     default Photo fromId(Long id) {

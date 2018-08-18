@@ -1,7 +1,13 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="jhipsterPress07App.photo.home.title">Photos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-photo" [routerLink]="['/photo/new']">
+        <button style="margin:5px;" id="jh-my-entity" class="btn btn-primary float-right jh-create-entity create-blog" (click)="myPhotos()">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterPress07App.photo.home.myLabel">
+            My Photos
+            </span>
+        </button>
+        <button style="margin:5px;" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-photo" [routerLink]="['/photo/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="jhipsterPress07App.photo.home.createLabel">
             Create new Photo
@@ -33,30 +39,33 @@
                     <span *ngIf="photo.image">{{photo.imageContentType}}, {{byteSize(photo.image)}}</span>
                 </td>
                 <td>
-                    <div *ngIf="photo.albumId">
-                        <a [routerLink]="['../album', photo.albumId , 'view' ]" >{{photo.albumId}}</a>
+                    <div *ngIf="photo.album">
+                        <a [routerLink]="['../album', photo.album.idd , 'view' ]" >{{photo.album.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="photo.calbumId">
-                        <a [routerLink]="['../calbum', photo.calbumId , 'view' ]" >{{photo.calbumId}}</a>
+                    <div *ngIf="photo.calbum">
+                        <a [routerLink]="['../calbum', photo.calbum.id , 'view' ]" >{{photo.calbum.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
+                    <!-- <button *ngIf="owner === message?.profile?.user?.id || owner === message?.community?.user?.id || isAdmin == true"  -->
                         <button type="submit"
                                 [routerLink]="['/photo', photo.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+						<button *ngIf="owner === photo?.calbum?.community?.user?.id || owner === photo?.album?.user?.id || isAdmin == true"
+								type="submit"
                                 [routerLink]="['/photo', photo.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+						<button *ngIf="owner === photo?.calbum?.community?.user?.id || owner === photo?.album?.user?.id || isAdmin == true"
+								type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'photo/'+ photo.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
