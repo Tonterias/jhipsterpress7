@@ -37,6 +37,8 @@ export class MessageComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
     paramMessageProfileId: any;
+    owner: any;
+    isAdmin: boolean;
 
     constructor(
         private messageService: MessageService,
@@ -112,6 +114,10 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
+            this.owner = account.id;
+            this.principal.hasAnyAuthority(['ROLE_ADMIN']).then( result => {
+                this.isAdmin = result;
+            });
         });
         this.registerChangeInMessages();
     }
@@ -230,6 +236,9 @@ export class MessageComponent implements OnInit, OnDestroy {
         this.totalItems = data.length;
         this.queryCount = this.totalItems;
         this.messages = data;
+        console.log('MESSAGES', this.messages);
+        console.log('OWNER', this.owner);
+        console.log('ISADMIN', this.isAdmin);
     }
 
     private onError(errorMessage: string) {

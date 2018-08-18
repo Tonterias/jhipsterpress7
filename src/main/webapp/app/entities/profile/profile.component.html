@@ -7,7 +7,7 @@
             My Profile
             </span>
         </button>
-        <button style="margin:5px;" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profile" [routerLink]="['/profile/new']">
+        <button *ngIf="hasProfile == false" style="margin:5px;" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profile" [routerLink]="['/profile/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="jhipsterPress07App.profile.home.createLabel">
             Create new Profile

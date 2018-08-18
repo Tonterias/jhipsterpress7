@@ -31,6 +31,8 @@ export class BlockuserComponent implements OnInit, OnDestroy {
     reverse: any;
     nameParamBlockUser: any;
     valueParamBlockUser: any;
+    owner: any;
+    isAdmin: boolean;
 
     constructor(
         private blockuserService: BlockuserService,
@@ -109,6 +111,10 @@ export class BlockuserComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
+            this.owner = account.id;
+            this.principal.hasAnyAuthority(['ROLE_ADMIN']).then( result => {
+                this.isAdmin = result;
+            });
         });
         this.registerChangeInBlockusers();
     }
@@ -138,6 +144,9 @@ export class BlockuserComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.blockusers = data;
+        console.log('blockusers', this.blockusers);
+        console.log('OWNER', this.owner);
+        console.log('ISADMIN', this.isAdmin);
     }
 
     private onError(errorMessage: string) {
