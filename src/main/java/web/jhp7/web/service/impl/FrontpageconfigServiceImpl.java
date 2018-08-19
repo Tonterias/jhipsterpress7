@@ -3,7 +3,9 @@ package web.jhp7.web.service.impl;
 import web.jhp7.web.service.FrontpageconfigService;
 import web.jhp7.web.domain.Frontpageconfig;
 import web.jhp7.web.repository.FrontpageconfigRepository;
+import web.jhp7.web.service.dto.CustomFrontpageconfigDTO;
 import web.jhp7.web.service.dto.FrontpageconfigDTO;
+import web.jhp7.web.service.mapper.CustomFrontpageconfigMapper;
 import web.jhp7.web.service.mapper.FrontpageconfigMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,10 +29,13 @@ public class FrontpageconfigServiceImpl implements FrontpageconfigService {
     private final FrontpageconfigRepository frontpageconfigRepository;
 
     private final FrontpageconfigMapper frontpageconfigMapper;
+    
+    private final CustomFrontpageconfigMapper customFrontpageconfigMapper;
 
-    public FrontpageconfigServiceImpl(FrontpageconfigRepository frontpageconfigRepository, FrontpageconfigMapper frontpageconfigMapper) {
+    public FrontpageconfigServiceImpl(FrontpageconfigRepository frontpageconfigRepository, FrontpageconfigMapper frontpageconfigMapper, CustomFrontpageconfigMapper customFrontpageconfigMapper) {
         this.frontpageconfigRepository = frontpageconfigRepository;
         this.frontpageconfigMapper = frontpageconfigMapper;
+        this.customFrontpageconfigMapper = customFrontpageconfigMapper;
     }
 
     /**
@@ -74,6 +79,19 @@ public class FrontpageconfigServiceImpl implements FrontpageconfigService {
         log.debug("Request to get Frontpageconfig : {}", id);
         return frontpageconfigRepository.findById(id)
             .map(frontpageconfigMapper::toDto);
+    }
+
+    /**
+     * Get one frontpageconfig by id, including the posts.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public Optional<CustomFrontpageconfigDTO> findOneIncludingPosts(Long id) {
+        log.debug("Request to get Frontpageconfig : {}", id);
+        return frontpageconfigRepository.findById(id)
+            .map(customFrontpageconfigMapper::toDto);
     }
 
     /**

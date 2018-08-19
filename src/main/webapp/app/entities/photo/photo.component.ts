@@ -148,7 +148,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private myPhotos() {
+    private myUsersPhotos() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -162,13 +162,13 @@ export class PhotoComponent implements OnInit, OnDestroy {
             .subscribe(
                     (res: HttpResponse<ICommunity[]>) => {
                         this.communities = res.body;
-                        this.communitiesCalbums(); // 2
+                        this.userCommuntiesCalbums();
                         },
                     (res: HttpErrorResponse) => this.onError(res.message)
                 );
     }
-// 2
-    private communitiesCalbums() {
+
+    private userCommuntiesCalbums() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -186,17 +186,13 @@ export class PhotoComponent implements OnInit, OnDestroy {
             .subscribe(
                     (res: HttpResponse<ICalbum[]>) => {
                         this.calbums = res.body;
-                        this.photoCommunitiesCalbums(); // 3
+                        this.userCommuntiesCalbumsPhotos();
                      },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
-//            .subscribe(
-//                    (res: HttpResponse<ICalbum[]>) => this.paginateCalbums(res.body, res.headers),
-//                    (res: HttpErrorResponse) => this.onError(res.message)
-//            );
     }
-// 3 de una vez voy a sacar las fotos y equivale al paso 2 mensajes....
-    private photoCommunitiesCalbums() {
+
+    private userCommuntiesCalbumsPhotos() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -214,17 +210,13 @@ export class PhotoComponent implements OnInit, OnDestroy {
             .subscribe(
                     (res: HttpResponse<IPhoto[]>) => {
                         this.photos = res.body;
-                        this.myUserAlbums(); // 4
+                        this.usersAlbums();
                      },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
-//            .subscribe(
-//                    (res: HttpResponse<IPhoto[]>) => this.paginatePhotos(res.body, res.headers),
-//                    (res: HttpErrorResponse) => this.onError(res.message)
-//            );
     }
-// 4 Aquí empieza con la otra pata
-    private myUserAlbums() {
+
+    private usersAlbums() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -238,17 +230,13 @@ export class PhotoComponent implements OnInit, OnDestroy {
             .subscribe(
                     (res: HttpResponse<IAlbum[]>) => {
                         this.albums = res.body;
-                        this.myUserAlbumsPhotos(); // 4b
+                        this.usersAlbumsPhotos();
                      },
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
-//            .subscribe(
-//                    (res: HttpResponse<IAlbum[]>) => this.paginateAlbums(res.body, res.headers),
-//                    (res: HttpErrorResponse) => this.onError(res.message)
-//            );
     }
-// 4b Y saca las fotos x el lado de los albumes
-    private myUserAlbumsPhotos() {
+
+    private usersAlbumsPhotos() {
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -263,13 +251,6 @@ export class PhotoComponent implements OnInit, OnDestroy {
         }
         this.photoService
             .query(query)
-//            .subscribe(
-//                    (res: HttpResponse<IPhoto[]>) => {
-//                        this.photos = res.body;
-//                        this.myUserAlbums();//4
-//                     },
-//                    (res: HttpErrorResponse) => this.onError(res.message)
-//            );
             .subscribe(
                     (res: HttpResponse<IPhoto[]>) => {
                         this.photos = this.photos.concat(res.body);
@@ -284,35 +265,11 @@ export class PhotoComponent implements OnInit, OnDestroy {
         this.totalItems = data.length;
         this.queryCount = this.totalItems;
         this.photos = data;
-        console.log('PHOTOS', this.photos);
-        console.log('ALBUMS', this.albums);
-        console.log('CALBUMS', this.calbums);
-        console.log('communities', this.communities);
-    }
-
-//    private paginatePhotos(data: IPhoto[], headers: HttpHeaders) {
-//        this.links = this.parseLinks.parse(headers.get('link'));
-//        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-//        this.queryCount = this.totalItems;
-//        this.photos = data;
 //        console.log('PHOTOS', this.photos);
-//    }
-
-//    private paginateCalbums(data: ICalbum[], headers: HttpHeaders) {
-//        this.links = this.parseLinks.parse(headers.get('link'));
-//        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-//        this.queryCount = this.totalItems;
-//        this.calbums = data;
-//        this.photoCommunitiesCalbums();
-//    }
-//
-//    private paginateCommunities(data: ICommunity[], headers: HttpHeaders) {
-//        this.links = this.parseLinks.parse(headers.get('link'));
-//        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-//        this.queryCount = this.totalItems;
-//        this.communities = data;
-//        this.communitiesCalbums();
-//    }
+//        console.log('ALBUMS', this.albums);
+//        console.log('CALBUMS', this.calbums);
+//        console.log('COMMUNITIES', this.communities);
+    }
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);

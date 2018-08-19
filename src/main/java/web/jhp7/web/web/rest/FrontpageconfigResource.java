@@ -1,13 +1,15 @@
 package web.jhp7.web.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
+import web.jhp7.web.service.FrontpageconfigQueryService;
 import web.jhp7.web.service.FrontpageconfigService;
 import web.jhp7.web.web.rest.errors.BadRequestAlertException;
 import web.jhp7.web.web.rest.util.HeaderUtil;
 import web.jhp7.web.web.rest.util.PaginationUtil;
-import web.jhp7.web.service.dto.FrontpageconfigDTO;
+import web.jhp7.web.service.dto.CustomFrontpageconfigDTO;
 import web.jhp7.web.service.dto.FrontpageconfigCriteria;
-import web.jhp7.web.service.FrontpageconfigQueryService;
+import web.jhp7.web.service.dto.FrontpageconfigDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,6 +116,20 @@ public class FrontpageconfigResource {
     public ResponseEntity<FrontpageconfigDTO> getFrontpageconfig(@PathVariable Long id) {
         log.debug("REST request to get Frontpageconfig : {}", id);
         Optional<FrontpageconfigDTO> frontpageconfigDTO = frontpageconfigService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(frontpageconfigDTO);
+    }
+
+    /**
+     * GET  /frontpageconfigs/:id/posts : get the "id" frontpageconfig, including posts
+     *
+     * @param id the id of the frontpageconfigDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the frontpageconfigDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/frontpageconfigs/{id}/posts")
+    @Timed
+    public ResponseEntity<CustomFrontpageconfigDTO> getFrontpageconfigIncludingPosts(@PathVariable Long id) {
+        log.debug("REST request to get Frontpageconfig : {}", id);
+        Optional<CustomFrontpageconfigDTO> frontpageconfigDTO = frontpageconfigService.findOneIncludingPosts(id);
         return ResponseUtil.wrapOrNotFound(frontpageconfigDTO);
     }
 

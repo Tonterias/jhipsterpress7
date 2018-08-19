@@ -1,5 +1,6 @@
 package web.jhp7.web.service;
 
+import web.jhp7.web.service.dto.CustomFrontpageconfigDTO;
 import web.jhp7.web.service.dto.FrontpageconfigDTO;
 
 import org.springframework.data.domain.Page;
@@ -37,6 +38,14 @@ public interface FrontpageconfigService {
      */
     Optional<FrontpageconfigDTO> findOne(Long id);
 
+    /**
+     * Get the "id" frontpageconfig, including posts.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    Optional<CustomFrontpageconfigDTO> findOneIncludingPosts(Long id);
+    
     /**
      * Delete the "id" frontpageconfig.
      *
