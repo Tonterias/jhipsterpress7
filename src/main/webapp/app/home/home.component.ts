@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IFrontpageconfig } from 'app/shared/model/frontpageconfig.model';
+import { ICustomFrontpageconfig } from 'app/shared/model/customfrontpageconfig.model';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 
@@ -21,7 +22,7 @@ import { LoginModalService, Principal, Account } from 'app/core';
 export class HomeComponent implements OnInit, OnDestroy {
     account: Account;
     modalRef: NgbModalRef;
-    frontpageconfigs: IFrontpageconfig[];
+    frontpageconfigs: ICustomFrontpageconfig[];
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -58,6 +59,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        this.frontpageconfigService
+        .findIncludingPosts(1)
+        .subscribe(
+            (res: HttpResponse<ICustomFrontpageconfig>) => this.paginateFrontpageconfigs(res.body, res.headers),
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         if (this.currentSearch) {
             this.frontpageconfigService
                 .query({
@@ -70,8 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                     (res: HttpResponse<IFrontpageconfig[]>) => this.paginateFrontpageconfigs(res.body, res.headers),
                     (res: HttpErrorResponse) => this.onError(res.message)
                 );
-            console.log('FRONTPAGE', this.frontpageconfigs);
-//            return;
+//            return;  findIncludingPosts
         }
 //        this.frontpageconfigService
 //            .query({
@@ -161,12 +167,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private paginateFrontpageconfigs(data: IFrontpageconfig[], headers: HttpHeaders) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        for (let i = 0; i < data.length; i++) {
-            this.frontpageconfigs.push(data[i]);
-        }
+    private paginateFrontpageconfigs(data: ICustomFrontpageconfig, headers: HttpHeaders) {
+        // this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = 1;
+        this.frontpageconfigs.push(data);
+        console.log('FRONTPAGE', this.frontpageconfigs);
     }
 
     private onError(errorMessage: string) {
