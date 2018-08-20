@@ -25,13 +25,13 @@
 			    <figure class="g-bg-white g-brd-around g-brd-gray-light-v4 g-brd-cyan--hover g-transition-0_2 text-center">
 			        <div class="g-py-40 g-px-20">
 			        <!-- Figure Image -->
-			        	<a *ngIf="community.image" (click)="openFile(community.imageContentType, community.image)">
+			        	<a *ngIf="community.image" [routerLink]="['/community', community.id, 'view' ]">
 		                    <img [src]="'data:' + community.imageContentType + ';base64,' + community.image" style="max-width: 100%;" alt="community image"/>
 		                </a>
 			        <!-- Figure Image -->
 			
 			        <!-- Figure Info -->
-			        <h4 class="h5 g-mb-5">{{community.communityname}}</h4>
+			        <h4 class="h5 g-mb-5" [routerLink]="['/community', community.id, 'view' ]">{{community.communityname}}</h4>
 			        <div class="d-block">
 			            <span class="g-color-cyan g-font-size-default g-mr-3">
 			            <i class="icon-user"></i>

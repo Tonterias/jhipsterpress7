@@ -13,8 +13,8 @@
 		                  <h2 class="h1 g-mb-15">{{post.headline}}</h2>
 		
 		                  <ul class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
-		                    <li class="list-inline-item">
-		                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
+		                    <li class="list-inline-item" *ngIf="post.profile.id">
+		                      <a [routerLink]="['/profile', post.profile.id, 'view']" class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
 		                    </li>
 		                    <li class="list-inline-item g-mx-10">/</li>
 		                    <li class="list-inline-item">
@@ -22,8 +22,8 @@
 		                    </li>
 		                    <li class="list-inline-item g-mx-10">/</li>
 		                    <li class="list-inline-item g-mr-10">
-		                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-		                        <i class="icon-finance-206 u-line-icon-pro align-middle g-pos-rel g-top-1 mr-1" *ngIf="post.comments">{{ post.comments.length }}</i> 
+		                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#comments">
+		                        <i class="icon-finance-206 u-line-icon-pro align-middle g-pos-rel g-top-1 mr-1" *ngIf="post.comments">{{ post.comments.length }} Comments</i>
 		                      </a>
 		                    </li>
 		                    <li class="list-inline-item ml-auto">
@@ -142,7 +142,7 @@
 		
 		                    <div class="media-body">
 		                      <h4 class="g-color-gray-dark-v1 g-mb-15">
-		                        <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
+		                        <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/profile', post.profile.id, 'view']">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
 		                      </h4>
 		
 		                      <div class="g-mb-15">
@@ -173,7 +173,7 @@
 		
 		                <!-- Comments -->
 		                <div class="g-mb-60">
-		                  <div class="u-heading-v3-1 g-mb-30">
+		                  <div class="u-heading-v3-1 g-mb-30" id="comments">
 		                    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary" *ngIf="post.comments">{{post.comments.length }} Comments</h2>
 		                  </div>
 		
@@ -185,7 +185,8 @@
 			                      <div class="g-mb-15">
 			                        <h5 class="d-flex justify-content-between align-items-center g-font-size-16 g-color-gray-dark-v1 mb-0">
 			                          <span class="d-block g-mr-10">{{comment.profile.user.firstName}} {{comment.profile.user.lastName}}</span>
-			                          <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15" href="#!">Author</a>
+			                          <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15" 
+			                          [routerLink]="['/profile', comment.profile.id, 'view']">Author</a>
 			                        </h5>
 			                        <span class="g-color-gray-dark-v4 g-font-size-12">{{comment.creationDate | date:'medium'}} calcular x? days ago</span>
 			                      </div>
@@ -389,11 +390,11 @@
                 </dd>
                 <dt><span jhiTranslate="jhipsterPress07App.post.profile">Profile</span></dt>
                 <dd>
-                <!-- 
-                    <div *ngIf="post.profileId">
-                        <a [routerLink]="['/profile', post.profileId, 'view']">{{post.profileId}}</a>
+                
+                    <div *ngIf="post.profile.id">
+                        <a [routerLink]="['/profile', post.profile.id, 'view']">{{post.profile.id}}</a>
                     </div>
-                 -->
+                
                 </dd>
             </dl>
 
