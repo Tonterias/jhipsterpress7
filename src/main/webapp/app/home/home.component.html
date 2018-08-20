@@ -7,8 +7,8 @@
       <div class="col-lg-6 g-pr-1--lg g-mb-30 g-mb-2--lg">
         <!-- Article -->
         <article class="u-block-hover">
-          <figure class="u-shadow-v25 g-bg-cover g-bg-white-gradient-opacity-v1--after">
-            <img [src]="'data:' + frontPageConfig.topNews1.imageContentType + ';base64,' + frontPageConfig.topNews1.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
+          <figure class="u-shadow-v25 g-bg-cover g-bg-white-gradient-opacity-v1--after" *ngIf="frontPageConfig.topNews1.image">  	
+            	<img [src]="'data:' + frontPageConfig.topNews1.imageContentType + ';base64,' + frontPageConfig.topNews1.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
           </figure>
 
           <span class="g-hidden-xs-down u-icon-v3 u-icon-size--sm g-font-size-13 g-bg-white rounded-circle g-pos-abs g-top-30 g-right-30">
@@ -21,13 +21,13 @@
 
           <div class="g-pos-abs g-bottom-30 g-left-30 g-right-30">
             <small class="g-color-white">
-              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i>{{frontPageConfig.topNews1.creationDate | date}}
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i>{{frontPageConfig.topNews1.creationDate | date:'medium'}}
             </small>
 
             <h3 class="h4 g-my-10">
-              <a class="g-color-white g-color-white--hover" href="#!">{{frontPageConfig.topNews1.headline}}</a>
+              <a class="g-color-white g-color-white--hover" [routerLink]="['/post', frontPageConfig.topNews1.id, 'view' ]">{{frontPageConfig.topNews1.headline}}</a>
             </h3>
-
+			<!-- 
             <ul class="g-hidden-xs-down u-list-inline g-font-size-12 g-color-white">
               <li class="list-inline-item">
                 <i class="icon-eye g-pos-rel g-top-1 g-mr-2"></i> 264
@@ -41,6 +41,7 @@
                 <i class="icon-share g-pos-rel g-top-1 g-mr-2"></i> 26
               </li>
             </ul>
+             -->
           </div>
         </article>
         <!-- End Article -->
@@ -49,7 +50,7 @@
       <div class="col-lg-6 g-pl-1--lg g-mb-30 g-mb-2--lg">
         <!-- Article -->
         <article class="u-block-hover">
-          <figure class="u-shadow-v25 g-bg-cover g-bg-white-gradient-opacity-v1--after">
+          <figure class="u-shadow-v25 g-bg-cover g-bg-white-gradient-opacity-v1--after" *ngIf="frontPageConfig.topNews2.image">
             <img [src]="'data:' + frontPageConfig.topNews2.imageContentType + ';base64,' + frontPageConfig.topNews2.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
           </figure>
 
@@ -63,13 +64,13 @@
 
           <div class="g-pos-abs g-bottom-30 g-left-30 g-right-30">
             <small class="g-color-white">
-              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews2.creationDate | date}}
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews2.creationDate | date:'medium'}}
             </small>
 
             <h3 class="h4 g-my-10">
-              <a class="g-color-white g-color-white--hover" href="#!">{{frontPageConfig.topNews2.headline}}</a>
+              <a class="g-color-white g-color-white--hover" [routerLink]="['/post', frontPageConfig.topNews2.id, 'view' ]">{{frontPageConfig.topNews2.headline}}</a>
             </h3>
-
+			<!-- 
             <ul class="g-hidden-xs-down u-list-inline g-font-size-12 g-color-white">
               <li class="list-inline-item">
                 <i class="icon-eye g-pos-rel g-top-1 g-mr-2"></i> 127
@@ -83,6 +84,7 @@
                 <i class="icon-share g-pos-rel g-top-1 g-mr-2"></i> 32
               </li>
             </ul>
+             -->
           </div>
         </article>
         <!-- End Article -->
@@ -91,17 +93,17 @@
       <div class="col-lg-4 g-pr-1--lg g-mb-30 g-mb-0--lg">
         <!-- Article -->
         <article class="u-block-hover">
-          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after">
+          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after" *ngIf="frontPageConfig.topNews3.image">
             <img [src]="'data:' + frontPageConfig.topNews3.imageContentType + ';base64,' + frontPageConfig.topNews3.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
           </figure>
 
           <div class="w-100 text-center g-absolute-centered g-px-30">
             <a class="btn btn-xs u-btn-cyan text-uppercase rounded-0" href="#!">Spa</a>
             <h3 class="h4 g-mt-10">
-              <a class="g-color-white" href="#!">{{frontPageConfig.topNews3.headline}}</a>
+              <a class="g-color-white" [routerLink]="['/post', frontPageConfig.topNews3.id, 'view' ]">{{frontPageConfig.topNews3.headline}}</a>
             </h3>
             <small class="g-color-white">
-              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews3.creationDate | date}}
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews3.creationDate | date:'medium'}}
             </small>
           </div>
         </article>
@@ -111,17 +113,17 @@
       <div class="col-lg-4 g-px-1--lg g-mb-30 g-mb-0--lg">
         <!-- Article -->
         <article class="u-block-hover">
-          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after">
+          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after" *ngIf="frontPageConfig.topNews4.image">
             <img [src]="'data:' + frontPageConfig.topNews4.imageContentType + ';base64,' + frontPageConfig.topNews4.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
           </figure>
 
           <div class="w-100 text-center g-absolute-centered g-px-30">
             <a class="btn btn-xs u-btn-pink text-uppercase rounded-0" href="#!">Fashion</a>
             <h3 class="h4 g-mt-10">
-              <a class="g-color-white" href="#!">{{frontPageConfig.topNews4.headline}}</a>
+              <a class="g-color-white" [routerLink]="['/post', frontPageConfig.topNews4.id, 'view' ]">{{frontPageConfig.topNews4.headline}}</a>
             </h3>
             <small class="g-color-white">
-              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews4.creationDate | date}}
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews4.creationDate | date:'medium'}}
             </small>
           </div>
         </article>
@@ -131,17 +133,17 @@
       <div class="col-lg-4 g-pl-1--lg">
         <!-- Article -->
         <article class="u-block-hover">
-          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after">
-            <img [src]="'data:' + frontPageConfig.topNews4.imageContentType + ';base64,' + frontPageConfig.topNews4.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
+          <figure class="u-shadow-v25 u-bg-overlay g-bg-white-gradient-opacity-v1--after" *ngIf="frontPageConfig.topNews5.image">
+            <img [src]="'data:' + frontPageConfig.topNews4.imageContentType + ';base64,' + frontPageConfig.topNews5.image" class="img-fluid w-100 u-block-hover__main--zoom-v1" alt="post image"/>
           </figure>
 
           <div class="w-100 text-center g-absolute-centered g-px-30">
             <a class="btn btn-xs u-btn-primary text-uppercase rounded-0" href="#!">Tech</a>
             <h3 class="h4 g-mt-10">
-              <a class="g-color-white" href="#!">{{frontPageConfig.topNews5.headline}}</a>
+              <a class="g-color-white" [routerLink]="['/post', frontPageConfig.topNews5.id, 'view' ]">{{frontPageConfig.topNews5.headline}}</a>
             </h3>
             <small class="g-color-white">
-              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews5.creationDate | date}}
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> {{frontPageConfig.topNews5.creationDate | date:'medium'}}
             </small>
           </div>
         </article>
@@ -172,7 +174,7 @@
           <div class="row">
             <!-- Article (Leftside) -->
             <div class="col-lg-7 g-mb-50 g-mb-0--lg">
-              <article>
+              <article *ngIf="frontPageConfig.latestNews1.image">
                 <figure class="u-shadow-v25 g-pos-rel g-mb-20">
                   <img [src]="'data:' + frontPageConfig.latestNews1.imageContentType + ';base64,' + frontPageConfig.latestNews1.image" class="img-fluid w-100" alt="post image"/>
                   <figcaption class="g-pos-abs g-top-20 g-left-20">
@@ -181,19 +183,19 @@
                 </figure>
 
                 <h3 class="h4 g-mb-10">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.latestNews1.headline}}</a>
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.latestNews1.id, 'view' ]">{{frontPageConfig.latestNews1.headline}}</a>
                 </h3>
 
                 <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                   <li class="list-inline-item">
-                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    	{{frontPageConfig.latestNews1.blog.profile.user.firstName}}
-						{{frontPageConfig.latestNews1.blog.profile.user.lastName}}
+                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.latestNews1.profile.id, 'view']">
+                    	{{frontPageConfig.latestNews1.profile.user.firstName}}
+						{{frontPageConfig.latestNews1.profile.user.lastName}}
 					</a>
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
-                    {{frontPageConfig.latestNews1.creationDate | date}}
+                    {{frontPageConfig.latestNews1.creationDate | date:'medium'}}
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
@@ -210,19 +212,19 @@
             <!-- Article (Rightside) -->
             <div class="col-lg-5">
               <!-- Article -->
-              <article class="media">
-                <a class="d-flex u-shadow-v25 align-self-center mr-3" href="#!">
+              <article class="media" *ngIf="frontPageConfig.latestNews2.image">
+                <a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.latestNews2.id, 'view' ]">
                   <img [src]="'data:' + frontPageConfig.latestNews2.imageContentType + ';base64,' + frontPageConfig.latestNews2.image" class="g-width-80 g-height-80" alt="post image"/>
                 </a>
 
                 <div class="media-body">
                   <h3 class="h6">
-                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.latestNews2.headline}}</a>
+                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.latestNews2.id, 'view' ]">{{frontPageConfig.latestNews2.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.latestNews2.creationDate | date}}
+                      {{frontPageConfig.latestNews2.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -238,19 +240,19 @@
               <hr class="g-brd-gray-light-v4 g-my-25">
 
               <!-- Article -->
-              <article class="media">
-                <a class="d-flex u-shadow-v25 align-self-center mr-3" href="#!">
+              <article class="media" *ngIf="frontPageConfig.latestNews3.image">
+                <a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.latestNews3.id, 'view' ]">
                   <img [src]="'data:' + frontPageConfig.latestNews3.imageContentType + ';base64,' + frontPageConfig.latestNews3.image" class="g-width-80 g-height-80" alt="post image"/>
                 </a>
 
                 <div class="media-body">
                   <h3 class="h6">
-                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.latestNews3.headline}}</a>
+                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.latestNews3.id, 'view' ]">{{frontPageConfig.latestNews3.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.latestNews3.creationDate | date}}
+                      {{frontPageConfig.latestNews3.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -266,19 +268,19 @@
               <hr class="g-brd-gray-light-v4 g-my-25">
 
               <!-- Article -->
-              <article class="media">
-                <a class="d-flex u-shadow-v25 align-self-center mr-3" href="#!">
+              <article class="media" *ngIf="frontPageConfig.latestNews3.image">
+                <a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.latestNews4.id, 'view' ]">
                   <img [src]="'data:' + frontPageConfig.latestNews4.imageContentType + ';base64,' + frontPageConfig.latestNews4.image" class="g-width-80 g-height-80" alt="post image"/>
                 </a>
 
                 <div class="media-body">
                   <h3 class="h6">
-                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.latestNews4.headline}}</a>
+                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.latestNews4.id, 'view' ]">{{frontPageConfig.latestNews4.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.latestNews4.creationDate | date}}
+                      {{frontPageConfig.latestNews4.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -294,19 +296,19 @@
               <hr class="g-brd-gray-light-v4 g-my-25">
 
               <!-- Article -->
-              <article class="media">
-                <a class="d-flex u-shadow-v25 align-self-center mr-3" href="#!">
+              <article class="media" *ngIf="frontPageConfig.latestNews5.image">
+                <a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.latestNews5.id, 'view' ]">
                   <img [src]="'data:' + frontPageConfig.latestNews5.imageContentType + ';base64,' + frontPageConfig.latestNews5.image" class="g-width-80 g-height-80" alt="post image"/>
                 </a>
 
                 <div class="media-body">
                   <h3 class="h6">
-                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.latestNews5.headline}}</a>
+                    <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.latestNews5.id, 'view' ]">{{frontPageConfig.latestNews5.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.latestNews5.creationDate | date}}
+                      {{frontPageConfig.latestNews5.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -333,8 +335,10 @@
           <div class="row g-mb-30">
             <!-- Article Image -->
             <div class="col-md-5">
-              <figure class="u-shadow-v25 g-pos-rel g-mb-20 g-mb-0--lg">
-                <img [src]="'data:' + frontPageConfig.breakingNews1.imageContentType + ';base64,' + frontPageConfig.breakingNews1.image" class="img-fluid w-100" alt="post image"/>
+              <figure class="u-shadow-v25 g-pos-rel g-mb-20 g-mb-0--lg" *ngIf="frontPageConfig.breakingNews1.image">
+              	<a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.breakingNews1.id, 'view' ]">
+                	<img [src]="'data:' + frontPageConfig.breakingNews1.imageContentType + ';base64,' + frontPageConfig.breakingNews1.image" class="img-fluid w-100" alt="post image"/>
+                </a>
                 <figcaption class="g-pos-abs g-top-20 g-left-20">
                   <a class="btn btn-xs u-btn-pink text-uppercase rounded-0" href="#!">Internet</a>
                 </figcaption>
@@ -345,19 +349,19 @@
             <!-- Article Content -->
             <div class="col-md-7 align-self-center">
               <h3 class="h4 g-mb-15">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.breakingNews1.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.breakingNews1.id, 'view' ]">{{frontPageConfig.breakingNews1.headline}}</a>
               </h3>
 
               <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                  	{{frontPageConfig.breakingNews1.blog.profile.user.firstName}}
-					{{frontPageConfig.breakingNews1.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.breakingNews1.profile.id, 'view']">
+                    	{{frontPageConfig.breakingNews1.profile.user.firstName}}
+						{{frontPageConfig.breakingNews1.profile.user.lastName}}
                   </a>
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
-                  {{frontPageConfig.breakingNews1.creationDate | date}}
+                  {{frontPageConfig.breakingNews1.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -368,7 +372,7 @@
               </ul>
 
               <p class="g-color-gray-dark-v2">{{frontPageConfig.breakingNews1.body | slice:0:300}}</p>
-              <a class="g-font-size-12" href="#!">Read More..</a>
+              <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.breakingNews1.id, 'view' ]">Read More..</a>
             </div>
             <!-- End Article Content -->
           </div>
@@ -386,27 +390,28 @@
               <!-- Article -->
               <article class="g-mb-30">
                 <figure class="u-shadow-v25 g-pos-rel g-mb-20">
-                  <img [src]="'data:' + frontPageConfig.featuredArticles1.imageContentType + ';base64,' + frontPageConfig.featuredArticles1.image" class="img-fluid w-100" alt="post image"/>
-
+                	<a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.featuredArticles1.id, 'view' ]">
+                  		<img [src]="'data:' + frontPageConfig.featuredArticles1.imageContentType + ';base64,' + frontPageConfig.featuredArticles1.image" class="img-fluid w-100" alt="post image"/>
+					</a>
                   <figcaption class="g-pos-abs g-top-20 g-left-20">
                     <a class="btn btn-xs u-btn-red text-uppercase rounded-0" href="#!">Drons</a>
                   </figcaption>
                 </figure>
 
                 <h3 class="h4 g-mb-10">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.featuredArticles1.headline}}</a>
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.featuredArticles1.id, 'view' ]">{{frontPageConfig.featuredArticles1.headline}}</a>
                 </h3>
 
                 <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                   <li class="list-inline-item">
-                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    	{{frontPageConfig.featuredArticles1.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles1.blog.profile.user.lastName}}
+                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.featuredArticles1.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles1.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles1.profile.user.lastName}}
                     </a>
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
-                    {{frontPageConfig.featuredArticles1.creationDate | date}}
+                    {{frontPageConfig.featuredArticles1.creationDate | date:'medium'}}
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
@@ -417,20 +422,20 @@
                 </ul>
 
                 <p class="g-color-gray-dark-v2">{{frontPageConfig.featuredArticles1.body | slice:0:300}}</p>
-                <a class="g-font-size-12" href="#!">Read More..</a>
+                <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.featuredArticles1.id, 'view' ]">Read More..</a>
               </article>
               <!-- End Article -->
 
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles2.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles2.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles2.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles2.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles2.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles2.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles2.id, 'view' ]">{{frontPageConfig.featuredArticles2.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -440,13 +445,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles3.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles3.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles3.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles2.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles2.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles3.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles3.id, 'view' ]">{{frontPageConfig.featuredArticles3.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -456,13 +461,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles4.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles4.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles4.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles4.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles4.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles4.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles4.id, 'view' ]">{{frontPageConfig.featuredArticles4.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -472,13 +477,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles5.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles5.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles5.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles5.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles5.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles5.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles5.id, 'view' ]">{{frontPageConfig.featuredArticles5.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -487,28 +492,29 @@
             <div class="col-lg-6">
               <!-- Article -->
               <article class="g-mb-30">
-                <figure class="u-shadow-v25 g-pos-rel g-mb-20">
-                  <img [src]="'data:' + frontPageConfig.featuredArticles6.imageContentType + ';base64,' + frontPageConfig.featuredArticles6.image" class="img-fluid w-100" alt="post image"/>
-
+                <figure class="u-shadow-v25 g-pos-rel g-mb-20" *ngIf="frontPageConfig.featuredArticles6.image">
+                	<a class="d-flex u-shadow-v25 align-self-center mr-3" [routerLink]="['/post', frontPageConfig.featuredArticles6.id, 'view' ]">
+	                  <img [src]="'data:' + frontPageConfig.featuredArticles6.imageContentType + ';base64,' + frontPageConfig.featuredArticles6.image" class="img-fluid w-100" alt="post image"/>
+					</a>
                   <figcaption class="g-pos-abs g-top-20 g-left-20">
                     <a class="btn btn-xs u-btn-cyan text-uppercase rounded-0" href="#!">Office</a>
                   </figcaption>
                 </figure>
 
                 <h3 class="h4 g-mb-10">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.featuredArticles6.headline}}</a>
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.featuredArticles6.id, 'view' ]">{{frontPageConfig.featuredArticles6.headline}}</a>
                 </h3>
 
                 <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                   <li class="list-inline-item">
-                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    	{{frontPageConfig.featuredArticles6.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles6.blog.profile.user.lastName}}
-                    </a>
+                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.featuredArticles6.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles6.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles6.profile.user.lastName}}
+                  </a>
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
-                    {{frontPageConfig.featuredArticles6.creationDate | date}}
+                    {{frontPageConfig.featuredArticles6.creationDate | date:'medium'}}
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
@@ -519,20 +525,20 @@
                 </ul>
 
                 <p class="g-color-gray-dark-v2">{{frontPageConfig.featuredArticles6.body | slice:0:300}}</p>
-                <a class="g-font-size-12" href="#!">Read More..</a>
+                <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.featuredArticles6.id, 'view' ]">Read More..</a>
               </article>
               <!-- End Article -->
 
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles7.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles7.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles7.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles7.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles7.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles7.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles7.id, 'view' ]">{{frontPageConfig.featuredArticles7.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -542,13 +548,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles8.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles8.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles8.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles8.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles8.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles8.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles8.id, 'view' ]">{{frontPageConfig.featuredArticles8.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -558,13 +564,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles9.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles9.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles9.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles9.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles9.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles9.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles9.id, 'view' ]">{{frontPageConfig.featuredArticles9.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -574,13 +580,13 @@
               <!-- Article -->
               <article>
                 <span class="g-font-size-12">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                    	{{frontPageConfig.featuredArticles10.blog.profile.user.firstName}}
-						{{frontPageConfig.featuredArticles10.blog.profile.user.lastName}}
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.featuredArticles10.profile.id, 'view']">
+                    	{{frontPageConfig.featuredArticles10.profile.user.firstName}}
+						{{frontPageConfig.featuredArticles10.profile.user.lastName}}
                   </a>
                 </span>
                 <h3 class="h6">
-                  <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.featuredArticles10.headline}}</a>
+                  <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.featuredArticles10.id, 'view' ]">{{frontPageConfig.featuredArticles10.headline}}</a>
                 </h3>
               </article>
               <!-- End Article -->
@@ -821,12 +827,12 @@
 
             <div class="media-body">
               <h3 class="h6">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.recentPosts1.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.recentPosts1.id, 'view' ]">{{frontPageConfig.recentPosts1.headline}}</a>
               </h3>
 
               <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                 <li class="list-inline-item">
-                  {{frontPageConfig.recentPosts1.creationDate | date}}
+                  {{frontPageConfig.recentPosts1.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -847,12 +853,12 @@
 
             <div class="media-body">
               <h3 class="h6">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.recentPosts2.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.recentPosts2.id, 'view' ]">{{frontPageConfig.recentPosts2.headline}}</a>
               </h3>
 
               <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                 <li class="list-inline-item">
-                  {{frontPageConfig.recentPosts2.creationDate | date}}
+                  {{frontPageConfig.recentPosts2.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -873,12 +879,12 @@
 
             <div class="media-body">
               <h3 class="h6">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.recentPosts3.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.recentPosts3.id, 'view' ]">{{frontPageConfig.recentPosts3.headline}}</a>
               </h3>
 
               <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                 <li class="list-inline-item">
-                  {{frontPageConfig.recentPosts3.creationDate | date}}
+                  {{frontPageConfig.recentPosts3.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -899,12 +905,12 @@
 
             <div class="media-body">
               <h3 class="h6">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.recentPosts4.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.recentPosts4.id, 'view' ]">{{frontPageConfig.recentPosts4.headline}}</a>
               </h3>
 
               <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                 <li class="list-inline-item">
-                  {{frontPageConfig.recentPosts4.creationDate | date}}
+                  {{frontPageConfig.recentPosts4.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -1029,19 +1035,19 @@
                 </figure>
 
                 <h3 class="h4 g-mb-10">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.popularNews1.headline}}</a>
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.popularNews1.id, 'view' ]">{{frontPageConfig.popularNews1.headline}}</a>
                 </h3>
 
                 <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                   <li class="list-inline-item">
-                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-	                    {{frontPageConfig.popularNews1.blog.profile.user.firstName}}
-						{{frontPageConfig.popularNews1.blog.profile.user.lastName}}
+                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.popularNews1.profile.id, 'view']">
+                    	{{frontPageConfig.popularNews1.profile.user.firstName}}
+						{{frontPageConfig.popularNews1.profile.user.lastName}}
 					</a>
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
-                    {{frontPageConfig.popularNews1.creationDate | date}}
+                    {{frontPageConfig.popularNews1.creationDate | date:'medium'}}
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
@@ -1052,7 +1058,7 @@
                 </ul>
 
                 <p class="g-color-gray-dark-v2">{{frontPageConfig.popularNews1.body | slice:0:300}}</p>
-                <a class="g-font-size-12" href="#!">Read More..</a>
+                <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.popularNews1.id, 'view' ]">Read More..</a>
               </article>
               <!-- Article -->
 
@@ -1070,12 +1076,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews2.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews2.id, 'view' ]">{{frontPageConfig.popularNews2.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews2.creationDate | date}}
+                      {{frontPageConfig.popularNews2.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1104,12 +1110,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews3.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews3.id, 'view' ]">{{frontPageConfig.popularNews3.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews3.creationDate | date}}
+                      {{frontPageConfig.popularNews3.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1138,12 +1144,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews4.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews4.id, 'view' ]">{{frontPageConfig.popularNews4.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews4.creationDate | date}}
+                      {{frontPageConfig.popularNews4.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1169,21 +1175,21 @@
                 </figure>
 
                 <h3 class="h4 g-mb-10">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.popularNews5.headline}}</a>
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.popularNews5.id, 'view' ]">{{frontPageConfig.popularNews5.headline}}</a>
                 </h3>
 
                 <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                   <li class="list-inline-item">
                     <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                  <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                   	{{frontPageConfig.popularNews5.blog.profile.user.firstName}}
-					{{frontPageConfig.popularNews5.blog.profile.user.lastName}}
-                  </a>
+                  <a class="u-link-v5 g-color-gray-dark-v4" [routerLink]="['/profile', frontPageConfig.popularNews5.profile.id, 'view']">
+                    	{{frontPageConfig.popularNews5.profile.user.firstName}}
+						{{frontPageConfig.popularNews5.profile.user.lastName}}
+					</a>
                     </a>
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
-                    {{frontPageConfig.popularNews5.creationDate | date}}
+                    {{frontPageConfig.popularNews5.creationDate | date:'medium'}}
                   </li>
                   <li class="list-inline-item">/</li>
                   <li class="list-inline-item">
@@ -1212,12 +1218,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews6.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews6.id, 'view' ]">{{frontPageConfig.popularNews6.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews6.creationDate | date}}
+                      {{frontPageConfig.popularNews6.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1246,12 +1252,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews7.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews7.id, 'view' ]">{{frontPageConfig.popularNews7.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews7.creationDate | date}}
+                      {{frontPageConfig.popularNews7.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1280,12 +1286,12 @@
 
                 <div class="media-body">
                   <h3 class="g-font-size-16">
-                    <a class="g-color-gray-dark-v1" href="#!">{{frontPageConfig.popularNews8.headline}}</a>
+                    <a class="g-color-gray-dark-v1" [routerLink]="['/post', frontPageConfig.popularNews8.id, 'view' ]">{{frontPageConfig.popularNews8.headline}}</a>
                   </h3>
 
                   <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
                     <li class="list-inline-item">
-                      {{frontPageConfig.popularNews8.creationDate | date}}
+                      {{frontPageConfig.popularNews8.creationDate | date:'medium'}}
                     </li>
                     <li class="list-inline-item">/</li>
                     <li class="list-inline-item">
@@ -1325,19 +1331,19 @@
             <!-- Article Content -->
             <div class="col-md-7 align-self-center">
               <h3 class="h4 g-mb-15">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.weeklyNews1.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.weeklyNews1.id, 'view' ]">{{frontPageConfig.weeklyNews1.headline}}</a>
               </h3>
 
               <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                   	{{frontPageConfig.weeklyNews1.blog.profile.user.firstName}}
-					{{frontPageConfig.weeklyNews1.blog.profile.user.lastName}}
-                  </a>
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.weeklyNews1.profile.id, 'view']">
+                    	{{frontPageConfig.weeklyNews1.profile.user.firstName}}
+						{{frontPageConfig.weeklyNews1.profile.user.lastName}}
+					</a>
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
-                  {{frontPageConfig.weeklyNews1.creationDate | date}}
+                  {{frontPageConfig.weeklyNews1.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -1348,7 +1354,7 @@
               </ul>
 
               <p class="g-color-gray-dark-v2">{{frontPageConfig.weeklyNews1.body | slice:0:300}}</p>
-              <a class="g-font-size-12" href="#!">Read More..</a>
+              <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.weeklyNews1.id, 'view' ]">Read More..</a>
             </div>
             <!-- End Article Content -->
           </div>
@@ -1371,19 +1377,19 @@
             <!-- Article Content -->
             <div class="col-md-7 align-self-center">
               <h3 class="h4 g-mb-15">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.weeklyNews2.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.weeklyNews2.id, 'view' ]">{{frontPageConfig.weeklyNews2.headline}}</a>
               </h3>
 
               <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                   	{{frontPageConfig.weeklyNews2.blog.profile.user.firstName}}
-					{{frontPageConfig.weeklyNews2.blog.profile.user.lastName}}
-                  </a>
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.weeklyNews2.profile.id, 'view']">
+                    	{{frontPageConfig.weeklyNews2.profile.user.firstName}}
+						{{frontPageConfig.weeklyNews2.profile.user.lastName}}
+					</a>
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
-                  {{frontPageConfig.weeklyNews2.creationDate | date}}
+                  {{frontPageConfig.weeklyNews2.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -1394,7 +1400,7 @@
               </ul>
 
               <p class="g-color-gray-dark-v2">{{frontPageConfig.weeklyNews2.body | slice:0:300}}</p>
-              <a class="g-font-size-12" href="#!">Read More..</a>
+              <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.weeklyNews2.id, 'view' ]">Read More..</a>
             </div>
             <!-- End Article Content -->
           </div>
@@ -1417,19 +1423,19 @@
             <!-- Article Content -->
             <div class="col-md-7 align-self-center">
               <h3 class="h4 g-mb-15">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.weeklyNews3.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.weeklyNews3.id, 'view' ]">{{frontPageConfig.weeklyNews3.headline}}</a>
               </h3>
 
               <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                   	{{frontPageConfig.weeklyNews3.blog.profile.user.firstName}}
-					{{frontPageConfig.weeklyNews3.blog.profile.user.lastName}}
-                  </a>
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.weeklyNews3.profile.id, 'view']">
+                    	{{frontPageConfig.weeklyNews3.profile.user.firstName}}
+						{{frontPageConfig.weeklyNews3.profile.user.lastName}}
+					</a>
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
-                  {{frontPageConfig.weeklyNews3.creationDate | date}}
+                  {{frontPageConfig.weeklyNews3.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -1440,7 +1446,7 @@
               </ul>
 
               <p class="g-color-gray-dark-v2">{{frontPageConfig.weeklyNews3.body | slice:0:300}}</p>
-              <a class="g-font-size-12" href="#!">Read More..</a>
+              <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.weeklyNews3.id, 'view' ]">Read More..</a>
             </div>
             <!-- End Article Content -->
           </div>
@@ -1463,19 +1469,19 @@
             <!-- Article Content -->
             <div class="col-md-7 align-self-center">
               <h3 class="h4 g-mb-15">
-                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{frontPageConfig.weeklyNews4.headline}}</a>
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/post', frontPageConfig.weeklyNews4.id, 'view' ]">{{frontPageConfig.weeklyNews4.headline}}</a>
               </h3>
 
               <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                   	{{frontPageConfig.weeklyNews4.blog.profile.user.firstName}}
-					{{frontPageConfig.weeklyNews4.blog.profile.user.lastName}}
-                  </a>
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" [routerLink]="['/profile', frontPageConfig.weeklyNews4.profile.id, 'view']">
+                    	{{frontPageConfig.weeklyNews4.profile.user.firstName}}
+						{{frontPageConfig.weeklyNews4.profile.user.lastName}}
+					</a>
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
-                  {{frontPageConfig.weeklyNews4.creationDate | date}}
+                  {{frontPageConfig.weeklyNews4.creationDate | date:'medium'}}
                 </li>
                 <li class="list-inline-item">/</li>
                 <li class="list-inline-item">
@@ -1486,7 +1492,7 @@
               </ul>
 
               <p class="g-color-gray-dark-v2">{{frontPageConfig.weeklyNews4.body | slice:0:300}}</p>
-              <a class="g-font-size-12" href="#!">Read More..</a>
+              <a class="g-font-size-12" [routerLink]="['/post', frontPageConfig.weeklyNews4.id, 'view' ]">Read More..</a>
             </div>
             <!-- End Article Content -->
           </div>

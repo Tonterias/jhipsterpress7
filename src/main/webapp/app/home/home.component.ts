@@ -65,20 +65,20 @@ export class HomeComponent implements OnInit, OnDestroy {
             (res: HttpResponse<ICustomFrontpageconfig>) => this.paginateFrontpageconfigs(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        if (this.currentSearch) {
-            this.frontpageconfigService
-                .query({
-                    query: this.currentSearch,
-                    page: this.page,
-                    size: this.itemsPerPage,
-                    sort: this.sort()
-                })
-                .subscribe(
-                    (res: HttpResponse<IFrontpageconfig[]>) => this.paginateFrontpageconfigs(res.body, res.headers),
-                    (res: HttpErrorResponse) => this.onError(res.message)
-                );
-//            return;  findIncludingPosts
-        }
+//        if (this.currentSearch) {
+//            this.frontpageconfigService
+//                .query({
+//                    query: this.currentSearch,
+//                    page: this.page,
+//                    size: this.itemsPerPage,
+//                    sort: this.sort()
+//                })
+//                .subscribe(
+//                    (res: HttpResponse<IFrontpageconfig[]>) => this.paginateFrontpageconfigs(res.body, res.headers),
+//                    (res: HttpErrorResponse) => this.onError(res.message)
+//                );
+////            return;  findIncludingPosts
+//        }
 //        this.frontpageconfigService
 //            .query({
 //                page: this.page,
