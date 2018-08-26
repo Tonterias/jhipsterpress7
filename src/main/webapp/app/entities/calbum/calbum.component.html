@@ -34,8 +34,8 @@
                 <td>{{calbum.creationDate | date:'medium'}}</td>
                 <td>{{calbum.title}}</td>
                 <td>
-                    <div *ngIf="calbum.community.id">
-                        <a [routerLink]="['../community', calbum.communityId , 'view' ]" >{{calbum.community.id}}</a>
+                    <div *ngIf="calbum.userId">
+                        <a [routerLink]="['../community', calbum.userId , 'view' ]" >{{calbum.userId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -46,14 +46,14 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-			                <button *ngIf="owner === calbum.community.user.id || isAdmin == true"
+			                <button *ngIf="owner === calbum.userId || isAdmin == true"
                         		type="submit"
                                 [routerLink]="['/calbum', calbum.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-			                <button *ngIf="owner === calbum.community.user.id || isAdmin == true"
+			                <button *ngIf="owner === calbum.userId || isAdmin == true"
                         		type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'calbum/'+ calbum.id + '/delete'} }]"
                                 replaceUrl="true"

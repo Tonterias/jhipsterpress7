@@ -113,7 +113,7 @@
                         </button>
 		            </li>
 		            <li class="list-inline-item g-mx-2">
-		            	<button *ngIf="owner === post.profile.user.id || isAdmin == true"
+		            	<button *ngIf="owner === post.userId || isAdmin == true"
                         		type="submit"
                                 [routerLink]="['/post', post.id, 'edit']"
                                 class="btn btn-primary btn-sm">
@@ -122,7 +122,7 @@
                         </button>
 		            </li>
 		            <li class="list-inline-item g-mx-2">
-		            	<button *ngIf="owner === post.profile.user.id || isAdmin == true"
+		            	<button *ngIf="owner === post.userId || isAdmin == true"
                         		type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'post/'+ post.id + '/delete'} }]"
                                 replaceUrl="true"
@@ -228,8 +228,8 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="post.profile.id">
-                        <a [routerLink]="['../profile', post.profile.id , 'view' ]" >{{post.profile.id}}</a>
+                    <div *ngIf="post.profileId">
+                        <a [routerLink]="['../profile', post.profileId , 'view' ]" >{{post.profileId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

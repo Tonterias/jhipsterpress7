@@ -77,9 +77,13 @@ public class ProfileDTO implements Serializable {
 
     private Boolean pet;
 
-    private User user;
-//    private Long userId;
+//    private User user;
+    private Long userId;
 
+    private String firstName;
+    
+    private String lastName;
+    
     public Long getId() {
         return id;
     }
@@ -248,12 +252,28 @@ public class ProfileDTO implements Serializable {
         this.pet = pet;
     }
 
-	public User getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@Override
@@ -267,11 +287,13 @@ public class ProfileDTO implements Serializable {
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((ethnicGroup == null) ? 0 : ethnicGroup.hashCode());
 		result = prime * result + ((eyes == null) ? 0 : eyes.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((futureChildren == null) ? 0 : futureChildren.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((lookingFor == null) ? 0 : lookingFor.hashCode());
 		result = prime * result + ((pet == null) ? 0 : pet.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
@@ -281,7 +303,7 @@ public class ProfileDTO implements Serializable {
 		result = prime * result + ((sibblings == null) ? 0 : sibblings.hashCode());
 		result = prime * result + ((smoker == null) ? 0 : smoker.hashCode());
 		result = prime * result + ((studies == null) ? 0 : studies.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -317,6 +339,11 @@ public class ProfileDTO implements Serializable {
 			return false;
 		if (eyes != other.eyes)
 			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
 		if (futureChildren != other.futureChildren)
 			return false;
 		if (gender != other.gender)
@@ -332,6 +359,11 @@ public class ProfileDTO implements Serializable {
 			if (other.imageContentType != null)
 				return false;
 		} else if (!imageContentType.equals(other.imageContentType))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (lookingFor != other.lookingFor)
 			return false;
@@ -360,10 +392,10 @@ public class ProfileDTO implements Serializable {
 			return false;
 		if (studies != other.studies)
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
@@ -375,7 +407,7 @@ public class ProfileDTO implements Serializable {
 				+ ", birthdate=" + birthdate + ", civilStatus=" + civilStatus + ", lookingFor=" + lookingFor
 				+ ", purpose=" + purpose + ", physical=" + physical + ", religion=" + religion + ", ethnicGroup="
 				+ ethnicGroup + ", studies=" + studies + ", sibblings=" + sibblings + ", eyes=" + eyes + ", smoker="
-				+ smoker + ", children=" + children + ", futureChildren=" + futureChildren + ", pet=" + pet + ", user="
-				+ user + "]";
+				+ smoker + ", children=" + children + ", futureChildren=" + futureChildren + ", pet=" + pet
+				+ ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 }

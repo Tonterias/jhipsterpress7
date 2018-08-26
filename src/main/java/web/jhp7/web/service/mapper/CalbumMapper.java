@@ -11,12 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {CommunityMapper.class})
 public interface CalbumMapper extends EntityMapper<CalbumDTO, Calbum> {
 
-//    @Mapping(source = "community.id", target = "communityId")
+    @Mapping(source = "community.user.id", target = "userId")
     CalbumDTO toDto(Calbum calbum);
 
     @Mapping(target = "photos", ignore = true)
-//    @Mapping(source = "communityId", target = "community")
-    @Mapping(target = "community", ignore = true)
+    @Mapping(source = "userId", target = "id")
+//    @Mapping(target = "community", ignore = true)
     Calbum toEntity(CalbumDTO calbumDTO);
 
     default Calbum fromId(Long id) {

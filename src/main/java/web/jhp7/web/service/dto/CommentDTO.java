@@ -26,7 +26,8 @@ public class CommentDTO implements Serializable {
 
     private Long postId;
 
-    private Profile profile;
+//    private Profile profile;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -68,12 +69,12 @@ public class CommentDTO implements Serializable {
         this.postId = postId;
     }
 
-	public Profile getProfile() {
-		return profile;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -85,7 +86,7 @@ public class CommentDTO implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((isOffensive == null) ? 0 : isOffensive.hashCode());
 		result = prime * result + ((postId == null) ? 0 : postId.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -123,10 +124,10 @@ public class CommentDTO implements Serializable {
 				return false;
 		} else if (!postId.equals(other.postId))
 			return false;
-		if (profile == null) {
-			if (other.profile != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!profile.equals(other.profile))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
@@ -134,6 +135,6 @@ public class CommentDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "CommentDTO [id=" + id + ", creationDate=" + creationDate + ", commentText=" + commentText
-				+ ", isOffensive=" + isOffensive + ", postId=" + postId + ", profile=" + profile + "]";
+				+ ", isOffensive=" + isOffensive + ", postId=" + postId + ", userId=" + userId + "]";
 	}
 }

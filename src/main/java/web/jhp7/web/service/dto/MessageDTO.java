@@ -25,13 +25,15 @@ public class MessageDTO implements Serializable {
 
     private Boolean isDeliverd;
 
-//    private Long communityId;
-//
-//    private Long profileId;
+    private Long communityId;
+
+    private Long profileId;
     
-    private Community community;
+    private Long userId;
     
-    private Profile profile;
+//    private Community community;
+//    
+//    private Profile profile;
 
     public Long getId() {
         return id;
@@ -65,32 +67,41 @@ public class MessageDTO implements Serializable {
         this.isDeliverd = isDeliverd;
     }
 
-	public Community getCommunity() {
-		return community;
+    public Long getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(Long communityId) {
+        this.communityId = communityId;
+    }
+
+    public Long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
+    }
+
+    public Long getUserId() {
+		return userId;
 	}
 
-	public void setCommunity(Community community) {
-		this.community = community;
-	}
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((community == null) ? 0 : community.hashCode());
+		result = prime * result + ((communityId == null) ? 0 : communityId.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((isDeliverd == null) ? 0 : isDeliverd.hashCode());
 		result = prime * result + ((messageText == null) ? 0 : messageText.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -103,10 +114,10 @@ public class MessageDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		MessageDTO other = (MessageDTO) obj;
-		if (community == null) {
-			if (other.community != null)
+		if (communityId == null) {
+			if (other.communityId != null)
 				return false;
-		} else if (!community.equals(other.community))
+		} else if (!communityId.equals(other.communityId))
 			return false;
 		if (creationDate == null) {
 			if (other.creationDate != null)
@@ -128,10 +139,15 @@ public class MessageDTO implements Serializable {
 				return false;
 		} else if (!messageText.equals(other.messageText))
 			return false;
-		if (profile == null) {
-			if (other.profile != null)
+		if (profileId == null) {
+			if (other.profileId != null)
 				return false;
-		} else if (!profile.equals(other.profile))
+		} else if (!profileId.equals(other.profileId))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
@@ -139,55 +155,7 @@ public class MessageDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "MessageDTO [id=" + id + ", creationDate=" + creationDate + ", messageText=" + messageText
-				+ ", isDeliverd=" + isDeliverd + ", community=" + community + ", profile=" + profile + "]";
+				+ ", isDeliverd=" + isDeliverd + ", communityId=" + communityId + ", profileId=" + profileId
+				+ ", userId=" + userId + "]";
 	}
-
-//    public Long getCommunityId() {
-//        return communityId;
-//    }
-//
-//    public void setCommunityId(Long communityId) {
-//        this.communityId = communityId;
-//    }
-//
-//    public Long getProfileId() {
-//        return profileId;
-//    }
-//
-//    public void setProfileId(Long profileId) {
-//        this.profileId = profileId;
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        if (o == null || getClass() != o.getClass()) {
-//            return false;
-//        }
-//
-//        MessageDTO messageDTO = (MessageDTO) o;
-//        if (messageDTO.getId() == null || getId() == null) {
-//            return false;
-//        }
-//        return Objects.equals(getId(), messageDTO.getId());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(getId());
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "MessageDTO{" +
-//            "id=" + getId() +
-//            ", creationDate='" + getCreationDate() + "'" +
-//            ", messageText='" + getMessageText() + "'" +
-//            ", isDeliverd='" + isIsDeliverd() + "'" +
-//            ", community=" + getCommunityId() +
-//            ", profile=" + getProfileId() +
-//            "}";
-//    }
 }

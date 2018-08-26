@@ -147,6 +147,9 @@ export class AlbumComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.albums = data;
+        console.log('OWNER', this.owner);
+        console.log('isADMIN', this.isAdmin);
+        console.log('ALBUMS:', this.albums);
     }
 
     private onError(errorMessage: string) {

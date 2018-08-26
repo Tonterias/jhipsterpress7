@@ -11,12 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface AlbumMapper extends EntityMapper<AlbumDTO, Album> {
 
-//    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.id", target = "userId")
     AlbumDTO toDto(Album album);
 
     @Mapping(target = "photos", ignore = true)
-//    @Mapping(source = "userId", target = "user")
-    @Mapping(target = "user", ignore = true)
+    @Mapping(source = "userId", target = "user")
+//    @Mapping(target = "user", ignore = true)
     Album toEntity(AlbumDTO albumDTO);
 
     default Album fromId(Long id) {

@@ -22,8 +22,8 @@ public class AlbumDTO implements Serializable {
     @Size(min = 2, max = 100)
     private String title;
 
-    private User user;
-//    private Long userId;
+//    private User user;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -49,12 +49,12 @@ public class AlbumDTO implements Serializable {
         this.title = title;
     }
 
-	public User getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class AlbumDTO implements Serializable {
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -92,17 +92,17 @@ public class AlbumDTO implements Serializable {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "AlbumDTO [id=" + id + ", creationDate=" + creationDate + ", title=" + title + ", user=" + user + "]";
+		return "AlbumDTO [id=" + id + ", creationDate=" + creationDate + ", title=" + title + ", userId=" + userId
+				+ "]";
 	}
-
 }

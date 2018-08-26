@@ -1,16 +1,12 @@
 package web.jhp7.web.service.dto;
 
-import java.time.Instant;
-import javax.validation.constraints.*;
-
-import web.jhp7.web.domain.Community;
-
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the Blog entity.
@@ -30,8 +26,10 @@ public class BlogDTO implements Serializable {
     private byte[] image;
     private String imageContentType;
 
-    private Community community;
-//    private Long communityId;
+//    private Community community;
+    private Long communityId;
+    
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -73,24 +71,33 @@ public class BlogDTO implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-	public Community getCommunity() {
-		return community;
+    public Long getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(Long communityId) {
+        this.communityId = communityId;
+    }
+
+    public Long getUserId() {
+		return userId;
 	}
 
-	public void setCommunity(Community community) {
-		this.community = community;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((community == null) ? 0 : community.hashCode());
+		result = prime * result + ((communityId == null) ? 0 : communityId.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -103,10 +110,10 @@ public class BlogDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		BlogDTO other = (BlogDTO) obj;
-		if (community == null) {
-			if (other.community != null)
+		if (communityId == null) {
+			if (other.communityId != null)
 				return false;
-		} else if (!community.equals(other.community))
+		} else if (!communityId.equals(other.communityId))
 			return false;
 		if (creationDate == null) {
 			if (other.creationDate != null)
@@ -130,51 +137,18 @@ public class BlogDTO implements Serializable {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "BlogDTO [id=" + id + ", creationDate=" + creationDate + ", title=" + title + ", image="
-				+ Arrays.toString(image) + ", imageContentType=" + imageContentType + ", community=" + community + "]";
+				+ Arrays.toString(image) + ", imageContentType=" + imageContentType + ", communityId=" + communityId
+				+ ", userId=" + userId + "]";
 	}
-//    public Long getCommunityId() {
-//        return communityId;
-//    }
-//
-//    public void setCommunityId(Long communityId) {
-//        this.communityId = communityId;
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        if (o == null || getClass() != o.getClass()) {
-//            return false;
-//        }
-//
-//        BlogDTO blogDTO = (BlogDTO) o;
-//        if (blogDTO.getId() == null || getId() == null) {
-//            return false;
-//        }
-//        return Objects.equals(getId(), blogDTO.getId());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(getId());
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "BlogDTO{" +
-//            "id=" + getId() +
-//            ", creationDate='" + getCreationDate() + "'" +
-//            ", title='" + getTitle() + "'" +
-//            ", image='" + getImage() + "'" +
-//            ", community=" + getCommunityId() +
-//            "}";
-//    }
 }

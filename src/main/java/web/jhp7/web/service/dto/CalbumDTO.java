@@ -22,8 +22,8 @@ public class CalbumDTO implements Serializable {
     @Size(min = 2, max = 100)
     private String title;
 
-    private Community community;
-//    private Long communityId;
+//    private Community community;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -49,22 +49,22 @@ public class CalbumDTO implements Serializable {
         this.title = title;
     }
 
-	public Community getCommunity() {
-		return community;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setCommunity(Community community) {
-		this.community = community;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((community == null) ? 0 : community.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -77,11 +77,6 @@ public class CalbumDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CalbumDTO other = (CalbumDTO) obj;
-		if (community == null) {
-			if (other.community != null)
-				return false;
-		} else if (!community.equals(other.community))
-			return false;
 		if (creationDate == null) {
 			if (other.creationDate != null)
 				return false;
@@ -97,12 +92,17 @@ public class CalbumDTO implements Serializable {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CalbumDTO [id=" + id + ", creationDate=" + creationDate + ", title=" + title + ", community="
-				+ community + "]";
-	}  
+		return "CalbumDTO [id=" + id + ", creationDate=" + creationDate + ", title=" + title + ", userId=" + userId
+				+ "]";
+	}
 }

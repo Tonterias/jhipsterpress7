@@ -28,8 +28,8 @@ public class NotificationDTO implements Serializable {
 
     private Boolean isDeliverd;
 
-//    private Long userId;
-    private User user;
+    private Long userId;
+//    private User user;
 
     public Long getId() {
         return id;
@@ -79,12 +79,12 @@ public class NotificationDTO implements Serializable {
         this.isDeliverd = isDeliverd;
     }
 
-	public User getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class NotificationDTO implements Serializable {
 		result = prime * result + ((notificationDate == null) ? 0 : notificationDate.hashCode());
 		result = prime * result + ((notificationReason == null) ? 0 : notificationReason.hashCode());
 		result = prime * result + ((notificationText == null) ? 0 : notificationText.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -137,10 +137,10 @@ public class NotificationDTO implements Serializable {
 				return false;
 		} else if (!notificationText.equals(other.notificationText))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
@@ -149,7 +149,6 @@ public class NotificationDTO implements Serializable {
 	public String toString() {
 		return "NotificationDTO [id=" + id + ", creationDate=" + creationDate + ", notificationDate=" + notificationDate
 				+ ", notificationReason=" + notificationReason + ", notificationText=" + notificationText
-				+ ", isDeliverd=" + isDeliverd + ", user=" + user + "]";
+				+ ", isDeliverd=" + isDeliverd + ", userId=" + userId + "]";
 	}
-  
 }

@@ -8,15 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Blog and its DTO BlogDTO.
  */
-@Mapper(componentModel = "spring", uses = {CommunityMapper.class})
+@Mapper(componentModel = "spring", uses = {CommunityMapper.class, UserMapper.class})
 public interface BlogMapper extends EntityMapper<BlogDTO, Blog> {
 
-//    @Mapping(source = "community.id", target = "communityId")
+    @Mapping(source = "id", target = "userId")
+    @Mapping(source = "community.id", target = "communityId")
     BlogDTO toDto(Blog blog);
 
-//  @Mapping(source = "communityId", target = "community")
+    @Mapping(source = "userId", target = "id")
+    @Mapping(source = "communityId", target = "community")
     @Mapping(target = "posts", ignore = true)
-    @Mapping(target = "community", ignore = true)
+//    @Mapping(target = "community", ignore = true)
     Blog toEntity(BlogDTO blogDTO);
 
     default Blog fromId(Long id) {
@@ -28,3 +30,22 @@ public interface BlogMapper extends EntityMapper<BlogDTO, Blog> {
         return blog;
     }
 }
+
+//TODO: ESTA DEBERIA DE SER LA FORMA CORRECTA PARA QUE FUNCIONE. PROBARLA
+//@Mapping(source = "user.id", target = "userId")
+//@Mapping(source = "community.id", target = "communityId")
+//
+//
+//@Mapping(source = "userId", target = "user")
+//@Mapping(source = "communityId", target = "community")
+
+
+//@Mapping(source = "id", target = "userId")
+//@Mapping(source = "community.id", target = "communityId")
+//BlogDTO toDto(Blog blog);
+//
+//@Mapping(source = "userId", target = "id")
+//@Mapping(source = "communityId", target = "community")
+//@Mapping(target = "posts", ignore = true)
+////@Mapping(target = "community", ignore = true)
+//Blog toEntity(BlogDTO blogDTO);

@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 
 import web.jhp7.web.domain.Profile;
 import web.jhp7.web.domain.Urllink;
+import web.jhp7.web.domain.User;
 
 /**
  * A DTO for the Post entity.
@@ -51,7 +52,12 @@ public class PostDTO implements Serializable {
 
     private String blogTitle;
 
-    private Profile profile;
+//    private Profile profile;
+    private Long profileId;
+    
+    private Long userId;
+//    private User userId;
+//    private UserDTO userDTO;
     
     private Set<CommentDTO> comments;
     
@@ -163,13 +169,13 @@ public class PostDTO implements Serializable {
         this.blogTitle = blogTitle;
     }
 
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
+//	public Profile getProfile() {
+//		return profile;
+//	}
+//
+//	public void setProfile(Profile profile) {
+//		this.profile = profile;
+//	}
 
 	public Set<CommentDTO> getComments() {
 		return comments;
@@ -195,6 +201,38 @@ public class PostDTO implements Serializable {
 		this.topics = topics;
 	}
 
+	public Long getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+//	public UserDTO getUserDTO() {
+//		return userDTO;
+//	}
+//
+//	public void setUserDTO(UserDTO userDTO) {
+//		this.userDTO = userDTO;
+//	}
+
+//	public User getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(User userId) {
+//		this.userId = userId;
+//	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -210,12 +248,13 @@ public class PostDTO implements Serializable {
 		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
 		result = prime * result + ((leadtext == null) ? 0 : leadtext.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
 		result = prime * result + ((publicationDate == null) ? 0 : publicationDate.hashCode());
 		result = prime * result + ((quote == null) ? 0 : quote.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((topics == null) ? 0 : topics.hashCode());
 		result = prime * result + ((urllink == null) ? 0 : urllink.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -280,10 +319,10 @@ public class PostDTO implements Serializable {
 				return false;
 		} else if (!leadtext.equals(other.leadtext))
 			return false;
-		if (profile == null) {
-			if (other.profile != null)
+		if (profileId == null) {
+			if (other.profileId != null)
 				return false;
-		} else if (!profile.equals(other.profile))
+		} else if (!profileId.equals(other.profileId))
 			return false;
 		if (publicationDate == null) {
 			if (other.publicationDate != null)
@@ -310,6 +349,11 @@ public class PostDTO implements Serializable {
 				return false;
 		} else if (!urllink.equals(other.urllink))
 			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
 		return true;
 	}
 
@@ -319,6 +363,8 @@ public class PostDTO implements Serializable {
 				+ ", headline=" + headline + ", leadtext=" + leadtext + ", bodytext=" + bodytext + ", quote=" + quote
 				+ ", conclusion=" + conclusion + ", image=" + Arrays.toString(image) + ", imageContentType="
 				+ imageContentType + ", urllink=" + urllink + ", blogId=" + blogId + ", blogTitle=" + blogTitle
-				+ ", profile=" + profile + ", comments=" + comments + ", tags=" + tags + ", topics=" + topics + "]";
+				+ ", profileId=" + profileId + ", userId=" + userId + ", comments=" + comments + ", tags=" + tags
+				+ ", topics=" + topics + "]";
 	}
+
 }

@@ -45,7 +45,7 @@
 	            <li class="col g-brd-right g-brd-gray-light-v4">
 	            <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-font-size-12 g-text-underline--none--hover g-px-5 g-py-4" href="#!">
 	                <i class="align-middle mr-1 icon-finance-206 u-line-icon-pro"></i>
-	     	               <button *ngIf="owner === blog.community.user.id || isAdmin == true"
+	     	               <button *ngIf="owner === blog.userId || isAdmin == true"
 	                      		type="submit"
 	                              [routerLink]="['/blog', blog.id, 'edit']"
 	                              class="btn btn-primary btn-sm">
@@ -57,7 +57,7 @@
 	            <li class="col g-brd-right g-brd-gray-light-v4">
 	            <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-font-size-12 g-text-underline--none--hover g-px-5 g-py-4" href="#!">
 	                <i class="align-middle mr-1 icon-education-097 u-line-icon-pro"></i>
-			                <button *ngIf="owner === blog.community.user.id || isAdmin == true"
+			                <button *ngIf="owner === blog.userId || isAdmin == true"
 			                 		type="submit"
 			                         [routerLink]="['/', { outlets: { popup: 'blog/'+ blog.id + '/delete'} }]"
 			                         replaceUrl="true"

@@ -11,9 +11,13 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface ProfileMapper extends EntityMapper<ProfileDTO, Profile> {
 
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.firstName", target = "firstName")
+    @Mapping(source = "user.lastName", target = "lastName")
     ProfileDTO toDto(Profile profile);
 
-    @Mapping(target = "user", ignore = true)
+//    @Mapping(target = "user", ignore = true)
+    @Mapping(source = "userId", target = "user")
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "posts", ignore = true)
     @Mapping(target = "messages", ignore = true)
