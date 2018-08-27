@@ -20,6 +20,8 @@
             "creationDate": "Creation Date",
             "commentText": "Comment Text",
             "isOffensive": "Is Offensive",
+            "usersPost": "Usuario del Post",
+            "usersProfile": "Usuario del Perfil",
             "post": "Post",
             "profile": "Profile"
         }

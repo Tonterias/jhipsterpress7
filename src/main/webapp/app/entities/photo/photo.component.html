@@ -23,8 +23,8 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="creationDate"><span jhiTranslate="jhipsterPress07App.photo.creationDate">Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="image"><span jhiTranslate="jhipsterPress07App.photo.image">Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="albumId"><span jhiTranslate="jhipsterPress07App.photo.album">Album</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="calbumId"><span jhiTranslate="jhipsterPress07App.photo.calbum">Calbum</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="albumId"><span jhiTranslate="jhipsterPress07App.photo.useralbum">Users' Album</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="calbumId"><span jhiTranslate="jhipsterPress07App.photo.usercalbum">Users' Calbum</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -39,32 +39,31 @@
                     <span *ngIf="photo.image">{{photo.imageContentType}}, {{byteSize(photo.image)}}</span>
                 </td>
                 <td>
-                    <div *ngIf="photo.album">
-                        <a [routerLink]="['../album', photo.album.idd , 'view' ]" >{{photo.album.id}}</a>
+                    <div *ngIf="photo.albumUserId">
+                        <a [routerLink]="['../album', photo.albumUserId , 'view' ]" >{{photo.albumUserId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="photo.calbum">
-                        <a [routerLink]="['../calbum', photo.calbum.id , 'view' ]" >{{photo.calbum.id}}</a>
+                    <div *ngIf="photo.cAlbumUserId">
+                        <a [routerLink]="['../calbum', photo.cAlbumUserId , 'view' ]" >{{photo.cAlbumUserId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                    <!-- <button *ngIf="owner === message?.profile?.user?.id || owner === message?.community?.user?.id || isAdmin == true"  -->
                         <button type="submit"
                                 [routerLink]="['/photo', photo.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-						<button *ngIf="owner === photo?.calbum?.community?.user?.id || owner === photo?.album?.user?.id || isAdmin == true"
+						<button *ngIf="owner === photo?.albumUserId || owner === photo?.cAlbumUserId || isAdmin == true"
 								type="submit"
                                 [routerLink]="['/photo', photo.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-						<button *ngIf="owner === photo?.calbum?.community?.user?.id || owner === photo?.album?.user?.id || isAdmin == true"
+						<button *ngIf="owner === photo?.albumUserId || owner === photo?.cAlbumUserId || isAdmin == true"
 								type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'photo/'+ photo.id + '/delete'} }]"
                                 replaceUrl="true"

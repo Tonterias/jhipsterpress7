@@ -19,6 +19,8 @@
             },
             "creationDate": "Creation Date",
             "image": "Image",
+            "useralbum": "Users' Album",
+            "usercalbum": "Users' CAlbum",
             "album": "Album",
             "calbum": "Calbum"
         }

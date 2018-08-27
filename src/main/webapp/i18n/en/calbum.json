@@ -20,6 +20,7 @@
             "creationDate": "Creation Date",
             "title": "Title",
             "photo": "Photo",
+            "communityAlbum": "Communities' Album",
             "community": "Community"
         }
     }

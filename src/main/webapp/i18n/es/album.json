@@ -20,6 +20,7 @@
             "creationDate": "Creation Date",
             "title": "Title",
             "photo": "Photo",
+            "usersAlbum": "Album del Usuario",
             "user": "User"
         }
     }

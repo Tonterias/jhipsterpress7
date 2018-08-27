@@ -20,6 +20,8 @@
             "creationDate": "Creation Date",
             "messageText": "Message Text",
             "isDeliverd": "Is Deliverd",
+            "usersCommunity": "Usuario de la Comunidad",
+            "usersProfile": "Usuario del Perfil",
             "community": "Community",
             "profile": "Profile"
         }
