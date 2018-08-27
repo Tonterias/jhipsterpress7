@@ -15,7 +15,8 @@ public interface CalbumMapper extends EntityMapper<CalbumDTO, Calbum> {
     CalbumDTO toDto(Calbum calbum);
 
     @Mapping(target = "photos", ignore = true)
-    @Mapping(source = "userId", target = "user")
+    @Mapping(source = "userId", target = "id")
+//    @Mapping(source = "userId", target = "id")????????????????????????????????? target = "user")
 //    @Mapping(target = "community", ignore = true)
     Calbum toEntity(CalbumDTO calbumDTO);
 

@@ -52,12 +52,19 @@ public class PostDTO implements Serializable {
 
     private String blogTitle;
 
-//    private Profile profile;
     private Long profileId;
     
-    private Long userId;
-//    private User userId;
-//    private UserDTO userDTO;
+    private String profileBio;
+    
+    private Long profileUserId;
+    
+    private String profileUserFirstName;
+    
+    private String profileUserLastName;
+    
+    @Lob
+    private byte[] profileImage;
+    private String profileImageContentType;
     
     private Set<CommentDTO> comments;
     
@@ -169,14 +176,6 @@ public class PostDTO implements Serializable {
         this.blogTitle = blogTitle;
     }
 
-//	public Profile getProfile() {
-//		return profile;
-//	}
-//
-//	public void setProfile(Profile profile) {
-//		this.profile = profile;
-//	}
-
 	public Set<CommentDTO> getComments() {
 		return comments;
 	}
@@ -208,30 +207,54 @@ public class PostDTO implements Serializable {
 	public void setProfileId(Long profileId) {
 		this.profileId = profileId;
 	}
-	
-	public Long getUserId() {
-		return userId;
+
+	public String getProfileBio() {
+		return profileBio;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setProfileBio(String profileBio) {
+		this.profileBio = profileBio;
 	}
 
-//	public UserDTO getUserDTO() {
-//		return userDTO;
-//	}
-//
-//	public void setUserDTO(UserDTO userDTO) {
-//		this.userDTO = userDTO;
-//	}
+	public Long getProfileUserId() {
+		return profileUserId;
+	}
 
-//	public User getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(User userId) {
-//		this.userId = userId;
-//	}
+	public void setProfileUserId(Long profileUserId) {
+		this.profileUserId = profileUserId;
+	}
+
+	public String getProfileUserFirstName() {
+		return profileUserFirstName;
+	}
+
+	public void setProfileUserFirstName(String profileUserFirstName) {
+		this.profileUserFirstName = profileUserFirstName;
+	}
+
+	public String getProfileUserLastName() {
+		return profileUserLastName;
+	}
+
+	public void setProfileUserLastName(String profileUserLastName) {
+		this.profileUserLastName = profileUserLastName;
+	}
+
+	public byte[] getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(byte[] profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public String getProfileImageContentType() {
+		return profileImageContentType;
+	}
+
+	public void setProfileImageContentType(String profileImageContentType) {
+		this.profileImageContentType = profileImageContentType;
+	}
 
 	@Override
 	public int hashCode() {
@@ -248,13 +271,18 @@ public class PostDTO implements Serializable {
 		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
 		result = prime * result + ((leadtext == null) ? 0 : leadtext.hashCode());
+		result = prime * result + ((profileBio == null) ? 0 : profileBio.hashCode());
 		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
+		result = prime * result + Arrays.hashCode(profileImage);
+		result = prime * result + ((profileImageContentType == null) ? 0 : profileImageContentType.hashCode());
+		result = prime * result + ((profileUserFirstName == null) ? 0 : profileUserFirstName.hashCode());
+		result = prime * result + ((profileUserId == null) ? 0 : profileUserId.hashCode());
+		result = prime * result + ((profileUserLastName == null) ? 0 : profileUserLastName.hashCode());
 		result = prime * result + ((publicationDate == null) ? 0 : publicationDate.hashCode());
 		result = prime * result + ((quote == null) ? 0 : quote.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((topics == null) ? 0 : topics.hashCode());
 		result = prime * result + ((urllink == null) ? 0 : urllink.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -319,10 +347,37 @@ public class PostDTO implements Serializable {
 				return false;
 		} else if (!leadtext.equals(other.leadtext))
 			return false;
+		if (profileBio == null) {
+			if (other.profileBio != null)
+				return false;
+		} else if (!profileBio.equals(other.profileBio))
+			return false;
 		if (profileId == null) {
 			if (other.profileId != null)
 				return false;
 		} else if (!profileId.equals(other.profileId))
+			return false;
+		if (!Arrays.equals(profileImage, other.profileImage))
+			return false;
+		if (profileImageContentType == null) {
+			if (other.profileImageContentType != null)
+				return false;
+		} else if (!profileImageContentType.equals(other.profileImageContentType))
+			return false;
+		if (profileUserFirstName == null) {
+			if (other.profileUserFirstName != null)
+				return false;
+		} else if (!profileUserFirstName.equals(other.profileUserFirstName))
+			return false;
+		if (profileUserId == null) {
+			if (other.profileUserId != null)
+				return false;
+		} else if (!profileUserId.equals(other.profileUserId))
+			return false;
+		if (profileUserLastName == null) {
+			if (other.profileUserLastName != null)
+				return false;
+		} else if (!profileUserLastName.equals(other.profileUserLastName))
 			return false;
 		if (publicationDate == null) {
 			if (other.publicationDate != null)
@@ -349,11 +404,6 @@ public class PostDTO implements Serializable {
 				return false;
 		} else if (!urllink.equals(other.urllink))
 			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
 		return true;
 	}
 
@@ -363,8 +413,9 @@ public class PostDTO implements Serializable {
 				+ ", headline=" + headline + ", leadtext=" + leadtext + ", bodytext=" + bodytext + ", quote=" + quote
 				+ ", conclusion=" + conclusion + ", image=" + Arrays.toString(image) + ", imageContentType="
 				+ imageContentType + ", urllink=" + urllink + ", blogId=" + blogId + ", blogTitle=" + blogTitle
-				+ ", profileId=" + profileId + ", userId=" + userId + ", comments=" + comments + ", tags=" + tags
-				+ ", topics=" + topics + "]";
+				+ ", profileId=" + profileId + ", profileBio=" + profileBio + ", profileUserId=" + profileUserId
+				+ ", profileUserFirstName=" + profileUserFirstName + ", profileUserLastName=" + profileUserLastName
+				+ ", profileImage=" + Arrays.toString(profileImage) + ", profileImageContentType="
+				+ profileImageContentType + ", comments=" + comments + ", tags=" + tags + ", topics=" + topics + "]";
 	}
-
 }

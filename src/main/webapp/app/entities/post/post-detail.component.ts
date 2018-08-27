@@ -16,6 +16,7 @@ export class PostDetailComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ post }) => {
             this.post = post;
+            console.log('POST#', this.post);
         });
     }
 

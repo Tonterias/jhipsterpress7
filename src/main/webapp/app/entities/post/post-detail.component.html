@@ -1,8 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="post">
-        
-        
 		    <!-- News Content -->
 		    <div class="container">
 		          <div class="row">
@@ -13,12 +11,12 @@
 		                  <h2 class="h1 g-mb-15">{{post.headline}}</h2>
 		
 		                  <ul class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
-		                    <li class="list-inline-item" *ngIf="post.profile.id">
-		                      <a [routerLink]="['/profile', post.profile.id, 'view']" class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
+		                    <li class="list-inline-item" *ngIf="post.profileId">
+		                      <a [routerLink]="['/profile', post.profileId, 'view']" class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">{{post.profileUserFirstName}} {{post.profileUserLastName}}</a>
 		                    </li>
 		                    <li class="list-inline-item g-mx-10">/</li>
 		                    <li class="list-inline-item">
-		                      {{post.profile.creationDate | date:'medium'}}
+		                      {{post.creationDate | date:'medium'}}
 		                    </li>
 		                    <li class="list-inline-item g-mx-10">/</li>
 		                    <li class="list-inline-item g-mr-10">
@@ -73,7 +71,7 @@
 		                  <div class="g-width-70x--md g-my-40">
 		                    <blockquote class="blockquote g-brd-left g-brd-2 g-brd-gray-light-v4 g-brd-primary--hover text-uppercase g-font-size-22 g-transition-0_2 g-pl-20 g-mb-30">
 		                      <p class="g-color-primary">{{post.quote}}</p>
-		                      <footer class="blockquote-footer g-font-size-12">John Doe</footer>
+		                      <!-- <footer class="blockquote-footer g-font-size-12">John Doe</footer> -->
 		                    </blockquote>
 		                  </div>
 		                </div>
@@ -134,19 +132,20 @@
 		                  </div>
 		
 		                  <div class="media g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-20">
-		                    <div *ngIf="post.profile.image">
-		                        <a (click)="openFile(post.profile.imageContentType, post.profile.image)">
-		                            <img [src]="'data:' + post.profile.imageContentType + ';base64,' + post.profile.image" style="max-width: 100%;" alt="post.profile image"/>
+
+		                    <div *ngIf="post.profileImage">
+		                        <a (click)="openFile(post.profileImageContentType, post.profileImage)">
+		                            <img [src]="'data:' + post.profileImageContentType + ';base64,' + post.profileImage" style="max-width: 100%;" alt="post.profileImage"/>
 		                        </a>
 			                </div>
-		
+
 		                    <div class="media-body">
 		                      <h4 class="g-color-gray-dark-v1 g-mb-15">
-		                        <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/profile', post.profile.id, 'view']">{{post.profile.user.firstName}} {{post.profile.user.lastName}}</a>
+		                        <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" [routerLink]="['/profile', post.profileId, 'view']">{{post.profileUserFirstName}} {{post.profileUserLastName}}</a>
 		                      </h4>
 		
 		                      <div class="g-mb-15">
-		                        <p class="g-color-gray-dark-v2">{{post.profile.bio}}</p>
+		                        <p class="g-color-gray-dark-v2">{{post.profileBio}}</p>
 		                      </div>
 		
 		                      <ul class="list-inline mb-0">
@@ -179,14 +178,16 @@
 		
 		                   <!-- Comment 1 -->
 			                  <div class="media g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-20" *ngFor="let comment of post.comments">
-			                    <img class="d-flex u-shadow-v25 g-width-50 g-height-50 rounded-circle g-mr-15" src="../../../content/images/img-temp/100x100/img9.jpg" alt="Image Description">
+			                    <a (click)="openFile(comment.profileImageContentType, comment.profileImage)">
+		                            <img class="d-flex u-shadow-v25 g-width-50 g-height-50 rounded-circle g-mr-15" [src]="'data:' + comment.profileImageContentType + ';base64,' + comment.profileImage" style="max-width: 100%;" alt="comment.profileImage"/>
+		                        </a>
 			
 			                    <div class="media-body">
 			                      <div class="g-mb-15">
 			                        <h5 class="d-flex justify-content-between align-items-center g-font-size-16 g-color-gray-dark-v1 mb-0">
-			                          <span class="d-block g-mr-10">{{comment.profile.user.firstName}} {{comment.profile.user.lastName}}</span>
+			                          <span class="d-block g-mr-10">{{comment.commentProfileUserFirstName}} {{comment.commentProfileUserLirstName}}</span>
 			                          <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15" 
-			                          [routerLink]="['/profile', comment.profile.id, 'view']">Author</a>
+			                          [routerLink]="['/profile', comment.commentProfileId, 'view']">Author</a>
 			                        </h5>
 			                        <span class="g-color-gray-dark-v4 g-font-size-12">{{comment.creationDate | date:'medium'}} calcular x? days ago</span>
 			                      </div>
@@ -261,154 +262,6 @@
 		          </div>
 		        </div>
 			<!-- End News Content -->
-        
-        
-        
-        
-        
-        
-        
-			
-  <h3>Comments</h3>
-			<div *ngFor="let comment of post.comments">
-			    <p>comment.creationDate: {{comment.creationDate | date}}</p>      
-			    <p>comment.commentText: {{comment.commentText}}</p>
-			    <div *ngIf="comment.profile.image">
-                        <a (click)="openFile(comment.profile.imageContentType, comment.profile.image)">
-                            <img [src]="'data:' + comment.profile.imageContentType + ';base64,' + comment.profile.image" style="max-width: 100%;" alt="comment.profile image"/>
-                        </a>
-                        {{comment.profile.imageContentType}}, {{byteSize(comment.profile.image)}}
-                </div>  
-			    <p>comment.profile.user.id: {{comment.profile.user.id}}</p>
-				<p>comment.profile.user.firstName: {{comment.profile.user.firstName}}</p>
-				<p>comment.profile.user.lastName: {{comment.profile.user.lastName}}</p>
-				<p>... next comment</p>
-			</div>
-			
-			<h3>Tags</h3>
-			<div *ngFor="let tag of post.tags">      
-			    <p>tag.tagName: {{tag.tagName}}</p>    
-			</div>
-			
-			<h3>Topics</h3>
-			<div *ngFor="let topic of post.topics">      
-			    <p>topic.topicName: {{topic.topicName}}</p>    
-			</div>
-			
-			<h3>URLlink</h3>
-				<p>post.urllink.id: {{post.urllink.id}}</p>
-			    <p>post.urllink.linkText: {{post.urllink.linkText}}</p>
-			    <p>post.urllink.linkURL: {{post.urllink.linkURL}}</p>
-			       
-			<h3>POST Profile</h3>
-			    <div *ngIf="post.profile.image">
-                        <a (click)="openFile(post.profile.imageContentType, post.profile.image)">
-                            <img [src]="'data:' + post.profile.imageContentType + ';base64,' + post.profile.image" style="max-width: 100%;" alt="post.profile image"/>
-                        </a>
-                        {{post.profile.imageContentType}}, {{byteSize(post.profile.image)}}
-                </div>  
-			    <p>post.profile.id: {{post.profile.id}}</p>
-			    <p>post.profile.creationDate: {{post.profile.creationDate}}</p>
-			    <p>post.profile.gender: {{post.profile.gender}}</p>
-			    <p>post.profile.phone: {{post.profile.phone}}</p>
-			    <p>post.profile.bio: {{post.profile.bio}}</p>
-			    <p>post.profile.birthdate: {{post.profile.birthdate}}</p>
-			    <p>post.profile.civilStatus: {{post.profile.civilStatus}}</p>
-			    <p>post.profile.lookingFor: {{post.profile.lookingFor}}</p>
-			    <p>post.profile.purpose: {{post.profile.purpose}}</p>
-			    <p>post.profile.physical: {{post.profile.physical}}</p>
-			    <p>post.profile.religion: {{post.profile.religion}}</p>
-			    <p>post.profile.ethnicGroup: {{post.profile.ethnicGroup}}</p>
-			    <p>post.profile.studies: {{post.profile.studies}}</p>
-			    <p>post.profile.sibblings: {{post.profile.sibblings}}</p>
-			    <p>post.profile.eyes: {{post.profile.eyes}}</p>
-			    <p>post.profile.children: {{post.profile.children}}</p>
-			    <p>post.profile.futureChildren: {{post.profile.futureChildren}}</p>
-			    <p>post.profile.pet: {{post.profile.pet}}</p>
-			    <p>post.profile.user.id: {{post.profile.user.id}}</p>
-			    <p>post.profile.user.login: {{post.profile.user.login}}</p>
-			    <p>post.profile.user.firstName: {{post.profile.user.firstName}}</p>
-			    <p>post.profile.user.lastName: {{post.profile.user.lastName}}</p>
-			    <p>post.profile.user.email: {{post.profile.user.email}}</p>
-			    <p>post.profile.user.activated: {{post.profile.user.activated}}</p> 
-    
-    
-
-        
-            <h2><span jhiTranslate="jhipsterPress07App.post.detail.title">Post</span> {{post.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="jhipsterPress07App.post.creationDate">Creation Date</span></dt>
-                <dd>
-                    <span>{{post.creationDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.publicationDate">Publication Date</span></dt>
-                <dd>
-                    <span>{{post.publicationDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.headline">Headline</span></dt>
-                <dd>
-                    <span>{{post.headline}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.leadtext">Leadtext</span></dt>
-                <dd>
-                    <span>{{post.leadtext}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.bodytext">Bodytext</span></dt>
-                <dd>
-                    <span>{{post.bodytext}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.quote">Quote</span></dt>
-                <dd>
-                    <span>{{post.quote}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.conclusion">Conclusion</span></dt>
-                <dd>
-                    <span>{{post.conclusion}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.image">Image</span></dt>
-                <dd>
-                    <div *ngIf="post.image">
-                        <a (click)="openFile(post.imageContentType, post.image)">
-                            <img [src]="'data:' + post.imageContentType + ';base64,' + post.image" style="max-width: 100%;" alt="post image"/>
-                        </a>
-                        {{post.imageContentType}}, {{byteSize(post.image)}}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.urllink">Urllink</span></dt>
-                <dd>
-                    <div *ngIf="post.urllinkId">
-                        <a [routerLink]="['/urllink', post.urllinkId, 'view']">{{post.urllinkId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.blog">Blog</span></dt>
-                <dd>
-                    <div *ngIf="post.blogId">
-                        <a [routerLink]="['/blog', post.blogId, 'view']">{{post.blogTitle}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="jhipsterPress07App.post.profile">Profile</span></dt>
-                <dd>
-                
-                    <div *ngIf="post.profile.id">
-                        <a [routerLink]="['/profile', post.profile.id, 'view']">{{post.profile.id}}</a>
-                    </div>
-                
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/post', post.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
         </div>
     </div>
 </div>

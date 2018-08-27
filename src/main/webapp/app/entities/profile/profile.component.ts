@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     reverse: any;
     owner: any;
     isAdmin: boolean;
+    hasProfile: boolean;
 
     constructor(
         private profileService: ProfileService,
