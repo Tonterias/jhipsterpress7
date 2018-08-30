@@ -134,10 +134,6 @@ export class CommunityUpdateComponent implements OnInit {
         result.subscribe((res: HttpResponse<ICommunity>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-//    private onSaveSuccess2(result) {
-//        this.isSaving = false;
-//    }
-
     private onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
