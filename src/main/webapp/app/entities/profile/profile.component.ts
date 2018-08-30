@@ -136,6 +136,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     private myProfile() {
+        this.hasProfile = false;
         const query = {
                 page: this.page - 1,
                 size: this.itemsPerPage,
@@ -144,12 +145,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if ( this.currentAccount.id  != null) {
             query['userId.equals'] = this.currentAccount.id;
         }
+//        console.log('Getting into the observalbe:');
         this.profileService
             .query(query)
             .subscribe(
-                    (res: HttpResponse<IProfile[]>) => this.paginateProfiles(res.body, res.headers),
-                    (res: HttpErrorResponse) => this.onError(res.message)
+                    (res: HttpResponse<IProfile[]>) => {
+                        if ( res.body.length !== 0 ) {
+                            this.hasProfile = true;
+//                            console.log('hasProfile1???:', this.hasProfile);
+//                            console.log('res.body???:', res.body);
+                        }
+                        this.paginateProfiles(res.body, res.headers);
+                    } , (res: HttpErrorResponse) => this.onError(res.message)
             );
+//        console.log('hasProfile2???:', this.hasProfile);
     }
 
     private paginateProfiles(data: IProfile[], headers: HttpHeaders) {
