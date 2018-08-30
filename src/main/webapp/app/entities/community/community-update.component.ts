@@ -87,7 +87,7 @@ export class CommunityUpdateComponent implements OnInit {
         );
     }
 
-    userServiceId(currentAccount) {
+    private userServiceId(currentAccount) {
         this.userService
            .query2(this.currentAccount.login)
            .subscribe(

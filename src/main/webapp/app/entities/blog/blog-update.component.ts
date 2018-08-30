@@ -43,7 +43,7 @@ export class BlogUpdateComponent implements OnInit {
         console.log('1.-Testing: Printing this.isSaving = false', this.isSaving);
         this.principal.identity().then(account => {
             this.currentAccount = account;
-            this.myBlogs(this.currentAccount);
+            this.myCommunities(this.currentAccount);
         });
 //        this.communityService.query().subscribe(
 //            (res: HttpResponse<ICommunity[]>) => {
@@ -83,7 +83,7 @@ export class BlogUpdateComponent implements OnInit {
         }
     }
 
-    private myBlogs(currentAccount) {
+    private myCommunities(currentAccount) {
         const query = {
 //                page: this.page - 1,
 //                size: this.itemsPerPage,
