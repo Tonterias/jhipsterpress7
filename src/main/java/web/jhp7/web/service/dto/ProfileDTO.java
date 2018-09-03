@@ -3,12 +3,15 @@ package web.jhp7.web.service.dto;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Set;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.mapstruct.Mapping;
 
 import web.jhp7.web.domain.User;
 import web.jhp7.web.domain.enumeration.Children;
@@ -77,12 +80,17 @@ public class ProfileDTO implements Serializable {
 
     private Boolean pet;
 
-//    private User user;
-    private Long userId;
+    private Long userId; //private User user;
 
     private String firstName;
     
     private String lastName;
+    
+    private Set<CustomActivityDTO> activities;
+    
+    private Set<CustomCelebDTO> celebs;
+    
+    private Set<CustomInterestDTO> interests;
     
     public Long getId() {
         return id;
@@ -276,12 +284,38 @@ public class ProfileDTO implements Serializable {
 		this.lastName = lastName;
 	}
 
+	public Set<CustomActivityDTO> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Set<CustomActivityDTO> activities) {
+		this.activities = activities;
+	}
+
+	public Set<CustomCelebDTO> getCelebs() {
+		return celebs;
+	}
+
+	public void setCelebs(Set<CustomCelebDTO> celebs) {
+		this.celebs = celebs;
+	}
+
+	public Set<CustomInterestDTO> getInterests() {
+		return interests;
+	}
+
+	public void setInterests(Set<CustomInterestDTO> interests) {
+		this.interests = interests;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((activities == null) ? 0 : activities.hashCode());
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
 		result = prime * result + ((birthdate == null) ? 0 : birthdate.hashCode());
+		result = prime * result + ((celebs == null) ? 0 : celebs.hashCode());
 		result = prime * result + ((children == null) ? 0 : children.hashCode());
 		result = prime * result + ((civilStatus == null) ? 0 : civilStatus.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
@@ -293,6 +327,7 @@ public class ProfileDTO implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
+		result = prime * result + ((interests == null) ? 0 : interests.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((lookingFor == null) ? 0 : lookingFor.hashCode());
 		result = prime * result + ((pet == null) ? 0 : pet.hashCode());
@@ -316,6 +351,11 @@ public class ProfileDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProfileDTO other = (ProfileDTO) obj;
+		if (activities == null) {
+			if (other.activities != null)
+				return false;
+		} else if (!activities.equals(other.activities))
+			return false;
 		if (bio == null) {
 			if (other.bio != null)
 				return false;
@@ -325,6 +365,11 @@ public class ProfileDTO implements Serializable {
 			if (other.birthdate != null)
 				return false;
 		} else if (!birthdate.equals(other.birthdate))
+			return false;
+		if (celebs == null) {
+			if (other.celebs != null)
+				return false;
+		} else if (!celebs.equals(other.celebs))
 			return false;
 		if (children != other.children)
 			return false;
@@ -359,6 +404,11 @@ public class ProfileDTO implements Serializable {
 			if (other.imageContentType != null)
 				return false;
 		} else if (!imageContentType.equals(other.imageContentType))
+			return false;
+		if (interests == null) {
+			if (other.interests != null)
+				return false;
+		} else if (!interests.equals(other.interests))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -408,6 +458,7 @@ public class ProfileDTO implements Serializable {
 				+ ", purpose=" + purpose + ", physical=" + physical + ", religion=" + religion + ", ethnicGroup="
 				+ ethnicGroup + ", studies=" + studies + ", sibblings=" + sibblings + ", eyes=" + eyes + ", smoker="
 				+ smoker + ", children=" + children + ", futureChildren=" + futureChildren + ", pet=" + pet
-				+ ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+				+ ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", activities="
+				+ activities + ", celebs=" + celebs + ", interests=" + interests + "]";
 	}
 }

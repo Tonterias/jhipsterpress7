@@ -63,7 +63,7 @@ export class AlbumUpdateComponent implements OnInit {
             this.subscribeToSaveResponse(this.albumService.create(this.album));
         }
     }
-    
+
     private userServiceId(currentAccount) {
         this.userService
            .query2(this.currentAccount.login)

@@ -8,16 +8,22 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Profile and its DTO ProfileDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, CustomInterestMapper.class, CustomActivityMapper.class, CustomCelebMapper.class})
 public interface ProfileMapper extends EntityMapper<ProfileDTO, Profile> {
 
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.firstName", target = "firstName")
     @Mapping(source = "user.lastName", target = "lastName")
+//    @Mapping(source = "interest.interestName", target = "profileInterests")
+//    @Mapping(source = "activity.activityName", target = "profileActivities")
+//    @Mapping(source = "celeb.celebName", target = "profileCelebs")
     ProfileDTO toDto(Profile profile);
 
 //    @Mapping(target = "user", ignore = true)
     @Mapping(source = "userId", target = "user")
+//    @Mapping(source = "profileInterests", target = "interest.interestName")
+//    @Mapping(source = "profileActivities", target = "activity")
+//    @Mapping(source = "profileCelebs", target = "celeb.celebName")
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "posts", ignore = true)
     @Mapping(target = "messages", ignore = true)

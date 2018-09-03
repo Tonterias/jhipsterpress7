@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface CustomTopicMapper extends EntityMapper<CustomTopicDTO, Topic> {
 
 
+	
     default Topic fromId(Long id) {
         if (id == null) {
             return null;

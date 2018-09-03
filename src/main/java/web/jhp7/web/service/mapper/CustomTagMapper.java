@@ -11,6 +11,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {PostMapper.class})
 public interface CustomTagMapper extends EntityMapper<CustomTagDTO, Tag> {
 
+	
 
     default Tag fromId(Long id) {
         if (id == null) {
